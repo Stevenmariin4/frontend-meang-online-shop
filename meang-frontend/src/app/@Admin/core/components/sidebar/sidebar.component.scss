@@ -1,0 +1,11 @@
+@import "./../../../pages/admin.component.scss";
+#sidebar-wrapper {
+    background-color: $admin-primary-color;
+}
+.title {
+    color: $white !important;
+}
+.list-group-item {
+    margin-top: 0.2em;
+    border-radius: 1em;
+}
