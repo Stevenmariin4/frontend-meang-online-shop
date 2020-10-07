@@ -1,5 +1,8 @@
 @import "./colors.scss";
 
+.txt-center {
+    text-align: center;
+}
 html,
 body {
     height: 100%;
@@ -90,8 +93,8 @@ ol {
 }
 
 .spad {
-    padding-top: 105px;
-    padding-bottom: 105px;
+    padding-top: 3em;
+    padding-bottom: 5em;
 }
 
 .text-white h1,
@@ -281,7 +284,7 @@ ol {
     width: 100%;
     font-size: 14px;
     font-weight: 700;
-    color: #414141;
+    color: $gray;
     padding: 0;
     text-transform: uppercase;
     line-height: 1;
@@ -306,7 +309,7 @@ ol {
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
-    color: #f51167;
+    color: $pinkacent;
 }
 
 .accordion-area .panel-body img {
@@ -343,7 +346,7 @@ ol {
     border-radius: 50px;
     border: none;
     padding: 0 19px;
-    background: #f0f0f0;
+    background: $white;
 }
 
 .header-search-form button {
@@ -389,7 +392,7 @@ ol {
     min-width: 16px;
     color: $white;
     font-size: 13px;
-    background: #f51167;
+    background: $pinkacent;
     text-align: center;
     border-radius: 30px;
     padding: 0 2px;
@@ -429,7 +432,7 @@ ol {
     font-size: 10px;
     font-weight: 700;
     color: $white;
-    background: #f51167;
+    background: $pinkacent;
     line-height: 1;
     text-transform: uppercase;
     left: calc(50% - 21px);
@@ -445,7 +448,7 @@ ol {
 }
 
 .main-menu li:hover > a {
-    color: #f51167;
+    color: $pinkacent;
 }
 
 .main-menu .sub-menu {
@@ -479,7 +482,7 @@ ol {
 }
 
 .main-menu .sub-menu li a:hover {
-    color: #f51167;
+    color: $pinkacent;
 }
 
 .nav-switch {
@@ -552,7 +555,7 @@ ol {
     width: 162px;
     height: 162px;
     border-radius: 50%;
-    background: #f51167;
+    background: $pinkacent;
     text-align: center;
     padding-top: 20px;
     -webkit-transform: rotate(45deg);
@@ -732,7 +735,7 @@ ol {
 }
 
 .feature:nth-child(2) {
-    background: #f51167;
+    background: $pinkacent;
 }
 
 .feature:nth-child(2) h2 {
@@ -827,7 +830,7 @@ ol {
     text-align: center;
     padding: 5px 0px 1px;
     min-width: 65px;
-    background: #f51167;
+    background: $pinkacent;
 }
 
 .product-item .pi-links {
@@ -1103,12 +1106,12 @@ ol {
 
 .fw-latest-post-widget .lp-content .readmore {
     font-size: 12px;
-    color: #f51167;
+    color: $pinkacent;
 }
 
 .contact-widget .con-info span {
     float: left;
-    color: #f51167;
+    color: $pinkacent;
     margin-right: 15px;
     overflow: hidden;
 }
@@ -1198,7 +1201,7 @@ ol {
 }
 
 .page-top-info h4 {
-    color: #414141;
+    color: $gray;
     font-weight: 700;
     text-transform: uppercase;
 }
@@ -1206,13 +1209,13 @@ ol {
 .site-pagination {
     font-size: 14px;
     font-weight: 600;
-    color: #414141;
+    color: $gray;
 }
 
 .site-pagination a {
     display: inline-block;
     font-size: 14px;
-    color: #414141;
+    color: $gray;
 }
 
 /* --------------
@@ -1226,7 +1229,7 @@ ol {
 .filter-widget .fw-title {
     font-size: 18px;
     font-weight: 700;
-    color: #414141;
+    color: $gray;
     text-transform: uppercase;
     margin-bottom: 45px;
 }
@@ -1239,7 +1242,7 @@ ol {
     display: block;
     position: relative;
     font-size: 12px;
-    color: #414141;
+    color: $gray;
     border-bottom: 1px solid #ebebeb;
     padding: 12px 0 5px 20px;
 }
@@ -1255,16 +1258,16 @@ ol {
     height: 9px;
     left: 0;
     top: 13px;
-    border: 1px solid #f51167;
+    border: 1px solid $pinkacent;
     border-radius: 50%;
 }
 
 .category-menu li a:hover {
-    color: #f51167;
+    color: $pinkacent;
 }
 
 .category-menu li a:hover:after {
-    background: #f51167;
+    background: $pinkacent;
 }
 
 .category-menu li a:last-child a {
@@ -1290,7 +1293,7 @@ ol {
 }
 
 .category-menu li:hover > a {
-    color: #f51167;
+    color: $pinkacent;
 }
 
 .category-menu li.active > .sub-menu {
@@ -1319,12 +1322,12 @@ ol {
 }
 
 .price-range-wrap .price-range .ui-slider-range.ui-corner-all.ui-widget-header:last-child {
-    background: #414141;
+    background: $gray;
 }
 
 .price-range-wrap .price-range.ui-widget-content .ui-slider-handle {
     border: none;
-    background: #414141;
+    background: $gray;
     height: 14px;
     width: 14px;
     outline: none;
@@ -1356,7 +1359,7 @@ ol {
     text-transform: uppercase;
     font-size: 14px;
     font-weight: 700;
-    color: #414141;
+    color: $gray;
     margin-bottom: 45px;
 }
 
@@ -1432,7 +1435,7 @@ ol {
     text-align: center;
     top: 45px;
     font-size: 11px;
-    color: #414141;
+    color: $gray;
 }
 
 .fw-color-choose input[type="radio"] {
@@ -1441,8 +1444,8 @@ ol {
 }
 
 .fw-color-choose input[type="radio"]:checked + label {
-    -webkit-box-shadow: 0 0 0 2px #f51167;
-    box-shadow: 0 0 0 2px #f51167;
+    -webkit-box-shadow: 0 0 0 2px $pinkacent;
+    box-shadow: 0 0 0 2px $pinkacent;
 }
 
 .fw-color-choose input[type="radio"]:checked + label span {
@@ -1461,7 +1464,7 @@ ol {
     min-width: 30px;
     text-align: center;
     font-size: 14px;
-    color: #414141;
+    color: $gray;
     font-weight: 500;
     cursor: pointer;
     border-radius: 50px;
@@ -1474,7 +1477,7 @@ ol {
 }
 
 .fw-size-choose input[type="radio"]:checked + label {
-    background: #f51167;
+    background: $pinkacent;
     color: $white;
 }
 
@@ -1493,7 +1496,7 @@ ol {
 
 .back-link a {
     font-size: 12px;
-    color: #414141;
+    color: $gray;
 }
 
 .product-pic-zoom {
@@ -1525,21 +1528,21 @@ ol {
     height: 100%;
     left: 0;
     top: 0;
-    border: 2px solid #f51167;
+    border: 2px solid $pinkacent;
     z-index: 1;
 }
 
 .product-details .p-title {
     font-size: 18px;
     font-weight: 700;
-    color: #414141;
+    color: $gray;
     text-transform: uppercase;
     margin-bottom: 18px;
 }
 
 .product-details .p-price {
     font-size: 24px;
-    color: #414141;
+    color: $gray;
     font-weight: 700;
     margin-bottom: 20px;
 }
@@ -1548,12 +1551,12 @@ ol {
     font-size: 12px;
     color: #000;
     font-weight: 700;
-    color: #414141;
+    color: $gray;
     margin-bottom: 10px;
 }
 
 .product-details .p-stock span {
-    color: #f51167;
+    color: $pinkacent;
 }
 
 .product-details .p-rating {
@@ -1561,7 +1564,7 @@ ol {
 }
 
 .product-details .p-rating i {
-    color: #f51167;
+    color: $pinkacent;
 }
 
 .product-details .p-rating i.fa-fade {
@@ -1573,7 +1576,7 @@ ol {
 }
 
 .product-details .p-review a {
-    color: #414141;
+    color: $gray;
     font-size: 14px;
     margin-right: 12px;
     margin-left: 12px;
@@ -1594,7 +1597,7 @@ ol {
     margin-right: 38px;
     text-transform: uppercase;
     font-weight: 700;
-    color: #414141;
+    color: $gray;
     padding-top: 10px;
     margin-bottom: 0;
 }
@@ -1603,11 +1606,11 @@ ol {
     width: 33px;
     height: 33px;
     font-size: 12px;
-    border: 2px solid #414141;
+    border: 2px solid $gray;
 }
 
 .product-details .fw-size-choose input[type="radio"]:checked + label {
-    border: 2px solid #f51167;
+    border: 2px solid $pinkacent;
 }
 
 .product-details .fw-size-choose .disable label {
@@ -1630,7 +1633,7 @@ ol {
 }
 
 .product-details .social-sharing a:hover {
-    color: #414141;
+    color: $gray;
 }
 
 .quantity {
@@ -1650,7 +1653,7 @@ ol {
     margin-right: 15px;
     text-transform: uppercase;
     font-weight: 700;
-    color: #414141;
+    color: $gray;
     padding-top: 10px;
     margin-bottom: 0;
 }
@@ -1728,7 +1731,7 @@ ol {
 
 .cart-table {
     padding: 40px 34px 0;
-    background: #f0f0f0;
+    background: $white;
     border-radius: 27px;
     overflow: hidden;
 }
@@ -1747,7 +1750,7 @@ ol {
 .cart-table table tr th {
     font-size: 12px;
     font-weight: 400;
-    color: #414141;
+    color: $gray;
     text-align: center;
     padding-bottom: 25px;
 }
@@ -1784,7 +1787,7 @@ ol {
 
 .cart-table .product-col .pc-title h4 {
     font-size: 16px;
-    color: #414141;
+    color: $gray;
     font-weight: 700;
     margin-bottom: 3px;
 }
@@ -1792,7 +1795,7 @@ ol {
 .cart-table .product-col .pc-title p {
     margin-bottom: 0;
     font-size: 16px;
-    color: #414141;
+    color: $gray;
 }
 
 .cart-table .quy-col {
@@ -1824,7 +1827,7 @@ ol {
 .cart-table .size-col h4,
 .cart-table .total-col h4 {
     font-size: 18px;
-    color: #414141;
+    color: $gray;
     font-weight: 400;
 }
 
@@ -1833,7 +1836,7 @@ ol {
 }
 
 .cart-table .total-cost {
-    background: #f51167;
+    background: $pinkacent;
     margin: 0 -34px;
     text-align: right;
     padding: 22px 0;
@@ -1866,7 +1869,7 @@ ol {
 .promo-code-form input {
     width: 100%;
     height: 58px;
-    border: 2px solid #f0f0f0;
+    border: 2px solid $white;
     padding-left: 24px;
     padding-right: 100px;
     font-size: 16px;
@@ -1883,7 +1886,7 @@ ol {
     text-transform: uppercase;
     font-size: 16px;
     font-weight: 700;
-    color: #f51167;
+    color: $pinkacent;
     cursor: pointer;
 }
 
@@ -1897,27 +1900,29 @@ ol {
     color: $white;
     line-height: 1;
     border-radius: 50px;
-    background: #3b3b3b;
+    background: $gray;
     padding: 21px 29px 20px;
     margin-bottom: 66px;
 }
 
 .checkout-form p {
     font-size: 16px;
-    color: #414141;
+    color: $gray;
 }
 
 .checkout-form h4 {
     font-size: 18px;
-    color: #414141;
+    color: $gray;
 }
 
-.checkout-form input[type="text"] {
+.checkout-form input[type="text"],
+input[type="password"],
+input[type="email"] {
     width: 100%;
     height: 44px;
     border: none;
     padding: 0 18px;
-    background: #f0f0f0;
+    background: $white;
     border-radius: 40px;
     margin-bottom: 20px;
     font-size: 14px;
@@ -1943,7 +1948,7 @@ ol {
 .cf-radio-btns label {
     display: block;
     font-size: 16px;
-    color: #414141;
+    color: $gray;
     margin-bottom: 0;
     padding-left: 30px;
     position: relative;
@@ -1957,7 +1962,7 @@ ol {
     height: 5px;
     left: 4px;
     top: 8px;
-    background: #414141;
+    background: $gray;
     border-radius: 50%;
     opacity: 0;
     -webkit-transition: all 0.3s;
@@ -1972,7 +1977,7 @@ ol {
     height: 13px;
     left: 0;
     top: 4px;
-    border: 2px solid #e1e1e1;
+    border: 2px solid $white;
     border-radius: 40px;
 }
 
@@ -2003,7 +2008,7 @@ ol {
 .payment-list li {
     font-size: 18px;
     font-weight: 600;
-    color: #414141;
+    color: $gray;
     margin-bottom: 20px;
 }
 
@@ -2018,7 +2023,7 @@ ol {
 }
 
 .checkout-cart {
-    background: #f0f0f0;
+    background: $white;
     padding: 40px 24px 30px;
     border-radius: 25px;
 }
@@ -2050,7 +2055,7 @@ ol {
 
 .checkout-cart .product-list h6 {
     font-weight: 700;
-    color: #414141;
+    color: $gray;
     padding-top: 15px;
     margin-bottom: 5px;
 }
@@ -2070,7 +2075,7 @@ ol {
     overflow: hidden;
     display: block;
     font-size: 18px;
-    color: #414141;
+    color: $gray;
     margin-bottom: 10px;
 }
 
@@ -2115,8 +2120,8 @@ ol {
     display: inline-flex;
     width: 32px;
     height: 32px;
-    background: #f0f0f0;
-    color: #414141;
+    background: $white;
+    color: $gray;
     font-size: 14px;
     border-radius: 50%;
     -webkit-box-align: center;
@@ -2133,7 +2138,7 @@ ol {
 
 .contact-social a:hover {
     color: $white;
-    background: #f51167;
+    background: $pinkacent;
 }
 
 .contact-form input,
@@ -2142,7 +2147,7 @@ ol {
     height: 44px;
     border: none;
     padding: 0 18px;
-    background: #f0f0f0;
+    background: $white;
     border-radius: 40px;
     margin-bottom: 17px;
     font-size: 14px;
@@ -2161,7 +2166,7 @@ ol {
     height: 100%;
     right: 0;
     top: 0;
-    background: #ddd;
+    background: $white;
 }
 
 .map iframe {
@@ -2263,7 +2268,7 @@ ol {
     .map {
         position: relative;
         width: 100%;
-        background: #ddd;
+        background: $white;
         height: 400px;
         margin-top: 70px;
     }
@@ -2285,17 +2290,17 @@ ol {
         display: none;
     }
     .slicknav_btn {
-        background-color: #565656;
+        background-color: $gray;
     }
     .slicknav_menu {
-        background: #282828;
+        background: $gray;
         display: block;
     }
     .slicknav_menu .new {
         font-size: 10px;
         font-weight: 700;
         color: $white;
-        background: #f51167;
+        background: $pinkacent;
         line-height: 1;
         text-transform: uppercase;
         padding: 5px 9px 1px;
@@ -2351,7 +2356,7 @@ ol {
     .map {
         position: relative;
         width: 100%;
-        background: #ddd;
+        background: $white;
         height: 400px;
         margin-top: 70px;
     }

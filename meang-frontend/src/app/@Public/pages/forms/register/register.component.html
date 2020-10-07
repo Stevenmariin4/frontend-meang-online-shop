@@ -1,0 +1,68 @@
+<section class="checkout-section spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6"></div>
+      <div class="col-lg-6 order-2 order-lg-1">
+        <form class="checkout-form">
+          <div class="cf-title txt-center">Registro de usuario</div>
+          <div class="row address-inputs">
+            <div class="col-md-6">
+              <input type="text" placeholder="Nombre" required />
+            </div>
+            <div class="col-md-6">
+              <input type="text" placeholder="Apellidos" />
+            </div>
+            <div class="col-md-6">
+              <input type="text" placeholder="Telefono" required />
+            </div>
+            <div class="col-md-6">
+              <input
+                type="email"
+                #email="ngModel"
+                [(ngModel)]="register.use_email"
+                class="form-control txt-center"
+                placeholder="Correo Electronico"
+                name="email"
+                required
+                [ngClass]="{
+                  'is-valid': !email.invalid,
+                  'is-invalid': email.invalid
+                }"
+                pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+              />
+              <div
+                class="alert alert-danger"
+                *ngIf="email.invalid && (email.dirty || email.touched)"
+              >
+                el email {{ register.use_email }} no es valido,
+                EJEMPLO:Usuario@gmail.com
+              </div>
+            </div>
+            <div class="col-md-6">
+              <input
+                type="password"
+                #password="ngModel"
+                [(ngModel)]="register.use_password"
+                placeholder="password"
+                name="password"
+                class="form-control txt-center"
+                required
+                [ngClass]="{
+                  'is-valid': !password.invalid,
+                  'is-invalid': password.invalid
+                }"
+              />
+              <div
+                class="alert alert-danger"
+                *ngIf="password.invalid && (password.dirty || password.touched)"
+              >
+                Introduzca Una Contraseña  Por Favor
+              </div>
+            </div>
+          </div>
+          <button class="site-btn submit-order-btn">Registrarse</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
