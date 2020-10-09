@@ -1,27 +1,69 @@
 <section class="checkout-section spad">
   <div class="container">
     <div class="row">
-      <div class="col-lg-6"></div>
-      <div class="col-lg-6 order-2 order-lg-1">
-        <form class="checkout-form">
+      <div class="col"></div>
+      <div class="col-lg-6">
+        <form class="checkout-form" (ngSubmit)="registerUser()" #form="ngForm">
           <div class="cf-title txt-center">Registro de usuario</div>
           <div class="row address-inputs">
             <div class="col-md-6">
-              <input type="text" placeholder="Nombre" required />
+              <input
+                type="text"
+                #name="ngModel"
+                [(ngModel)]="register.use_name"
+                name="name"
+                class="form-control"
+                placeholder="Nombre *"
+                required
+                [ngClass]="{
+                  'is-valid': !name.invalid,
+                  'is-invalid': name.invalid
+                }"
+              />
+              <div
+                class="alert alert-danger"
+                *ngIf="name.invalid && (name.dirty || name.touched)"
+              >
+                El Campo Es Obligatorio
+              </div>
             </div>
             <div class="col-md-6">
-              <input type="text" placeholder="Apellidos" />
+              <input
+                type="text"
+                class="form-control"
+                #lastname="ngModel"
+                [(ngModel)]="register.use_lastname"
+                name="lastname"
+                placeholder="Apellidos"
+              />
             </div>
             <div class="col-md-6">
-              <input type="text" placeholder="Telefono" required />
+              <input
+                type="text"
+                #phone="ngModel"
+                [(ngModel)]="register.use_phone"
+                name="phone"
+                placeholder="Telefono *"
+                class="form-control"
+                [ngClass]="{
+                  'is-valid': !phone.invalid,
+                  'is-invalid': phone.invalid
+                }"
+              />
+              <div
+                class="alert alert-danger"
+                *ngIf="phone.invalid && (phone.dirty || phone.touched)"
+              >
+                El Campo Es Obligatorio
+              </div>
             </div>
             <div class="col-md-6">
               <input
                 type="email"
                 #email="ngModel"
                 [(ngModel)]="register.use_email"
-                class="form-control txt-center"
-                placeholder="Correo Electronico"
+                class="form-control"
+                placeholder="Correo Electronico *"
                 name="email"
                 required
                 [ngClass]="{
@@ -34,8 +76,7 @@
                 class="alert alert-danger"
                 *ngIf="email.invalid && (email.dirty || email.touched)"
               >
-                el email {{ register.use_email }} no es valido,
-                EJEMPLO:Usuario@gmail.com
+                el email {{ register.use_email }} no es valido
               </div>
             </div>
             <div class="col-md-6">
@@ -43,9 +84,9 @@
                 type="password"
                 #password="ngModel"
                 [(ngModel)]="register.use_password"
-                placeholder="password"
+                placeholder="password *"
                 name="password"
-                class="form-control txt-center"
+                class="form-control"
                 required
                 [ngClass]="{
                   'is-valid': !password.invalid,
@@ -56,13 +97,20 @@
                 class="alert alert-danger"
                 *ngIf="password.invalid && (password.dirty || password.touched)"
               >
-                Introduzca Una Contraseña  Por Favor
+                Introduzca Una Contraseña Por Favor
               </div>
             </div>
           </div>
-          <button class="site-btn submit-order-btn">Registrarse</button>
+          <button
+            class="site-btn submit-order-btn"
+            [ngClass]="{ 'disabled-btn': !form.valid }"
+            [disabled]="!form.valid"
+          >
+            Registrarse
+          </button>
         </form>
       </div>
+      <div class="col"></div>
     </div>
   </div>
 </section>

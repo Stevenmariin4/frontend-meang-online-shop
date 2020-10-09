@@ -3,46 +3,9 @@
 .txt-center {
     text-align: center;
 }
-html,
-body {
-    height: 100%;
-    font-family: "Josefin Sans", sans-serif;
-    -webkit-font-smoothing: antialiased;
-}
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    margin: 0;
-    color: $black;
-    font-weight: 600;
-}
-
-h1 {
-    font-size: 70px;
-}
-
-h2 {
-    font-size: 36px;
-}
-
-h3 {
-    font-size: 30px;
-}
-
-h4 {
-    font-size: 24px;
-}
-
-h5 {
-    font-size: 18px;
-}
-
-h6 {
-    font-size: 16px;
+.disabled-btn {
+    background-color: gray;  
 }
 
 p {
@@ -1902,7 +1865,7 @@ ol {
     border-radius: 50px;
     background: $gray;
     padding: 21px 29px 20px;
-    margin-bottom: 66px;
+    margin-bottom: 2em;
 }
 
 .checkout-form p {
@@ -1926,10 +1889,11 @@ input[type="email"] {
     border-radius: 40px;
     margin-bottom: 20px;
     font-size: 14px;
+    border: solid 0.5px;
 }
 
 .checkout-form .address-inputs {
-    margin-bottom: 54px;
+    margin-bottom: 1em;
 }
 
 .address-rb {

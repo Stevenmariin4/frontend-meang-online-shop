@@ -1,3 +1,4 @@
+import { CoreModule } from '@Service/core.module';
 import { PublicModule } from './@Public/pages/public.module';
 import { AdminModule } from './@Admin/pages/admin.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AdminModule,
     PublicModule,
+    CoreModule,
     AppRoutingModule,
     HttpClientModule,
   ],

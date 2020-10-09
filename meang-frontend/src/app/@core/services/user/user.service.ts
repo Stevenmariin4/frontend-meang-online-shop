@@ -13,7 +13,7 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   getUser(filter?: any, page?: number, pageSize?: number, order?: any) {
-    this.http
+    return this.http
       .post(`${this.urlbase}${this.urluser}${this.urlFilter}`, filter)
       .pipe(
         map((res: any) => {
@@ -23,7 +23,7 @@ export class UserService {
   }
   getMe() {}
   register(body) {
-    this.http.post(`${this.urlbase}${this.urluser}`, body).pipe(
+    return this.http.post(`${this.urlbase}${this.urluser}`, body).pipe(
       map((res: any) => {
         return res;
       })

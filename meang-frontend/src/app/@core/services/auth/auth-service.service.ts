@@ -19,11 +19,14 @@ export class AuthServiceService {
     // tslint:disable-next-line: no-inferrable-types
     let role: boolean = false;
     const validate = JSON.parse(localStorage.getItem('session')) as ISession;
-    if (validate.id !== this.roid) {
-      role = true;
+    if (validate) {
+      if (validate.id !== this.roid) {
+        role = true;
+      } else {
+        role = false;
+      }
     } else {
-      role = false;
+      return role;
     }
-    return role;
   }
 }

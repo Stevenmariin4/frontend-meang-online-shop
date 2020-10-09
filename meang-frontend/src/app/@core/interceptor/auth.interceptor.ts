@@ -12,12 +12,12 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService implements HttpInterceptor {
+export class AuthInterceptor implements HttpInterceptor {
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const token = localStorage.getItem('session') as ISession;
+    const token = JSON.parse(localStorage.getItem('session')) as ISession;
     if (token) {
       req = req.clone({
         setHeaders: {
