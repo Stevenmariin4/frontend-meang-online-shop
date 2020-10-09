@@ -16,12 +16,25 @@
         </div>
         <div class="col-xl-4 col-lg-5">
           <div class="user-panel">
-            <div class="up-item">
-              <i class="far fa-user"></i>
-              <span style="margin-left: 1em">
-                <a href="#">Ingresar</a> | <a href="#">Registrarse</a>
-              </span>
-            </div>
+            <ng-container *ngIf="!authSessio.loggedIn(); else loggedIn">
+              <div class="up-item">
+                <i class="far fa-user loggendIn"></i>
+                <span style="margin-left: 1em">
+                  <a [routerLink]="['/login']">Ingresar</a> |
+                  <a [routerLink]="['/register']">Registrarse</a>
+                </span>
+              </div>
+            </ng-container>
+            <ng-template #loggedIn>
+              <div class="up-item">
+                <i class="far fa-user Loggend"></i>
+                <span style="margin-left: 1em">
+                  <a class="btn" (click)="logOut()">Salir</a>|
+                  <a class="btn">Perfil</a>
+                </span>
+              </div>
+            </ng-template>
+
             <div class="up-item">
               <div class="shopping-card">
                 <i class="fas fa-shopping-cart"></i>
