@@ -17,17 +17,16 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {}
   logOut() {
-    localStorage.removeItem('session');
-    // this.login.logout().subscribe((data) => {
-    //   if (!data.error) {
-        
-    //     basicAlert(
-    //       'Inicio Sesion',
-    //       'Se Ha Finalizado Correctamente',
-    //       'Aceptar',
-    //       Types_Alert.SUCCESS
-    //     );
-    //   }
-    // });
+    this.login.logout().subscribe((data) => {
+      if (!data.error) {
+        basicAlert(
+          'Inicio Sesion',
+          'Se Ha Finalizado Correctamente',
+          'Aceptar',
+          Types_Alert.SUCCESS
+        );
+        localStorage.removeItem('session');
+      }
+    });
   }
 }

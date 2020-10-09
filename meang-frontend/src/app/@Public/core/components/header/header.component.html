@@ -14,11 +14,11 @@
             <button><i class="fas fa-search"></i></button>
           </form>
         </div>
-        <div class="col-xl-4 col-lg-5">   
+        <div class="col-xl-4 col-lg-5">
           <div class="user-panel">
             <ng-container *ngIf="!authSessio.loggedIn(); else loggedIn">
               <div class="up-item">
-                <i class="far fa-user"></i>
+                <i class="far fa-user loggendIn"></i>
                 <span style="margin-left: 1em">
                   <a [routerLink]="['/login']">Ingresar</a> |
                   <a [routerLink]="['/register']">Registrarse</a>
@@ -27,9 +27,10 @@
             </ng-container>
             <ng-template #loggedIn>
               <div class="up-item">
-                <i class="far fa-user"></i>
+                <i class="far fa-user Loggend"></i>
                 <span style="margin-left: 1em">
-                  <a class="btn" (click)="logOut()">salir</a>
+                  <a class="btn" (click)="logOut()">Salir</a>|
+                  <a class="btn">Perfil</a>
                 </span>
               </div>
             </ng-template>

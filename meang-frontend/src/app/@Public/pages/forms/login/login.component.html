@@ -1,7 +1,8 @@
 <section class="checkout-section spad">
   <div class="container">
     <div class="row">
-      <div class="col-lg-6 order-2 order-lg-1">
+      <div class="col"></div>
+      <div class="col-lg-6">
         <form class="checkout-form" (ngSubmit)="sigin()" #forma="ngForm">
           <div class="cf-title txt-center">Iniciar Sesion</div>
           <div class="row address-inputs">
@@ -11,7 +12,7 @@
                 #email="ngModel"
                 [(ngModel)]="login.email"
                 class="form-control txt-center"
-                placeholder="Correo Electronico"
+                placeholder="Correo Electronico *"
                 name="email"
                 required
                 [ngClass]="{
@@ -33,7 +34,7 @@
                 type="password"
                 #password="ngModel"
                 [(ngModel)]="login.password"
-                placeholder="password"
+                placeholder="Contraseña *"
                 name="password"
                 class="form-control txt-center"
                 required
@@ -50,12 +51,17 @@
               </div>
             </div>
           </div>
-          <button class="site-btn submit-order-btn" [disabled]="!forma.valid">
+          <button
+            class="site-btn submit-order-btn"
+            [ngClass]="{ disabledbtn: !forma.valid }"
+            [disabled]="!forma.valid"
+          >
             Enviar
           </button>
           <label>¿Ha olvidado la contraseña ? </label>
         </form>
       </div>
+      <div class="col"></div>
     </div>
   </div>
 </section>

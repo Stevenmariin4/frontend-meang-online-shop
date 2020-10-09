@@ -1,6 +1,12 @@
+import { environment } from './../../../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { ILoginform } from '@Service/interfaces/login.interfaces';
 import { IregisterUser } from '@Service/interfaces/user.interfaces';
+import { UserService } from '@Service/services/user/user.service';
+import { Router } from '@angular/router';
+import { IResponse } from '@Service/interfaces/response.interfaces';
+import { basicAlert } from '@Shared/toast';
+import { Types_Alert } from '@Shared/values.config';
 
 @Component({
   selector: 'app-register',
@@ -14,10 +20,42 @@ export class RegisterComponent implements OnInit {
     use_age: 0,
     use_email: '',
     use_password: '',
-    ro_id: 2,
+    use_phone: '',
+    ro_id: environment.idCliente,
     is_valid: 1,
   };
-  constructor() {}
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {}
+  registerUser() {
+    this.userService.register(this.register).subscribe(
+      (data: IResponse) => {
+        if (!data.error) {
+          basicAlert(
+            'Usuario',
+            'Usuario Creado Correctamente',
+            'Aceptar',
+            Types_Alert.SUCCESS
+          );
+          this.router.navigate(['/login']);
+        } else {
+          basicAlert(
+            'Usuario',
+            'Error al crear usuarip',
+            'Aceptar',
+            Types_Alert.SUCCESS
+          );
+        }
+      },
+      (err) => {
+        console.log(err);
+        basicAlert(
+          'Usuario',
+          'Error al crear usuarip',
+          'Aceptar',
+          Types_Alert.SUCCESS
+        );
+      }
+    );
+  }
 }
