@@ -14,7 +14,13 @@
       ]  ,
       "@shop-core/*":[
         "src/app/@public/core/*"
-      ]
+      ],
+      "@Service/*":[
+        "src/app/@core/*"
+      ],
+      "@Shared/*":[
+        "src/app/@Shared/*"
+      ],
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
