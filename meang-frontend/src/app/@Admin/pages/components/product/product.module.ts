@@ -1,3 +1,4 @@
+import { SharedModule } from './../../../../@Shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -10,7 +11,8 @@ import { CreateUpdateProductComponent } from './create-update-product/create-upd
   declarations: [ListProductComponent, CreateUpdateProductComponent],
   imports: [
     CommonModule,
-    ProductRoutingModule
+    ProductRoutingModule,
+    SharedModule
   ]
 })
 export class ProductModule { }

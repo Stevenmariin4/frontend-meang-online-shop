@@ -7,6 +7,7 @@ export const environment = {
   subCategory: 'sub-category',
   Category: 'category',
   promotion: 'promotions',
+  colors: 'colors',
   filter: '/filter',
   idCliente: 2,
 };

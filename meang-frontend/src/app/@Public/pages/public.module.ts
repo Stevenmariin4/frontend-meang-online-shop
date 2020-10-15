@@ -8,7 +8,12 @@ import { NavbarComponent } from '@shop-core/components/navbar/navbar.component';
 import { FooterComponent } from '@shop-core/components/footer/footer.component';
 
 @NgModule({
-  declarations: [PublicComponent, HeaderComponent, NavbarComponent, FooterComponent],
+  declarations: [
+    PublicComponent,
+    HeaderComponent,
+    NavbarComponent,
+    FooterComponent,
+  ],
   imports: [CommonModule, PublicRoutingModule],
 })
 export class PublicModule {}

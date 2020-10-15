@@ -8,9 +8,9 @@ export interface ICategory {
 export interface IResponseDataCategorys {
   error: boolean;
   status: number;
-  body: IResponse;
+  body: IResponseCategory;
 }
-export interface IResponse {
+export interface IResponseCategory {
   count: number;
   rows: ICategory[];
 }

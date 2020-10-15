@@ -14,9 +14,14 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatInputModule } from '@angular/material/input';
+import { CarouselPComponent } from './components/carousel-p/carousel-p.component';
 
 @NgModule({
-  declarations: [DynamicTableComponent, DynamicFilterComponent],
+  declarations: [
+    DynamicTableComponent,
+    DynamicFilterComponent,
+    CarouselPComponent,
+  ],
   imports: [
     CommonModule,
     MaterialModule,
@@ -32,6 +37,6 @@ import { MatInputModule } from '@angular/material/input';
     MatRadioModule,
     MatInputModule,
   ],
-  exports: [DynamicTableComponent, DynamicFilterComponent],
+  exports: [DynamicTableComponent, DynamicFilterComponent, CarouselPComponent],
 })
 export class SharedModule {}

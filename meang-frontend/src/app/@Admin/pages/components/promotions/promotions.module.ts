@@ -1,3 +1,4 @@
+import { SharedModule } from './../../../../@Shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -10,7 +11,8 @@ import { CreateUpdatePromotionsComponent } from './create-update-promotions/crea
   declarations: [ListPromotionsComponent, CreateUpdatePromotionsComponent],
   imports: [
     CommonModule,
-    PromotionsRoutingModule
+    PromotionsRoutingModule,
+    SharedModule
   ]
 })
 export class PromotionsModule { }

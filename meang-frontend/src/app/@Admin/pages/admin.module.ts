@@ -12,16 +12,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
-import { ListColorsComponent } from './components/colors/list-colors/list-colors.component';
-import { CreateUpdateColorsComponent } from './components/colors/create-update-colors/create-update-colors.component';
 @NgModule({
   declarations: [
     AdminComponent,
     HeaderComponent,
     TitleComponent,
     SidebarComponent,
-    ListColorsComponent,
-    CreateUpdateColorsComponent,
   ],
   imports: [
     CommonModule,
