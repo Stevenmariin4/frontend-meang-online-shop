@@ -1,5 +1,4 @@
 import { AdminComponent } from './admin.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminGuard } from '@Service/guards/admin.guard';
@@ -13,12 +12,14 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+          import('./components/dashboard/dashboard.module').then(
+            (m) => m.DashboardModule
+          ),
       },
       {
         path: 'users',
         loadChildren: () =>
-          import('./users/users.module').then((m) => m.UsersModule),
+          import('./components/users/users.module').then((m) => m.UsersModule),
       },
     ],
   },

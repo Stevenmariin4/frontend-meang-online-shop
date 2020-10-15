@@ -1,11 +1,23 @@
 @import "./colors.scss";
+table {
+    width: 100%;
+}
 
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+td,
+th {
+    width: 25%;
+}
 .txt-center {
     text-align: center;
 }
 
 .disabled-btn {
-    background-color: gray;  
+    background-color: gray;
 }
 
 p {
@@ -17,7 +29,9 @@ p {
 img {
     max-width: 100%;
 }
-
+.mrl-1 {
+    margin-left: 1em;
+}
 input:focus,
 select:focus,
 button:focus,
@@ -830,7 +844,13 @@ ol {
     display: inline-block;
     color: #000;
 }
-
+.add-card {
+    background-color: $pinkacent !important;
+    color: $white !important;
+}
+.icon-car {
+    color: $white !important;
+}
 .product-item .pi-links a.add-card {
     padding-top: 8px;
 }

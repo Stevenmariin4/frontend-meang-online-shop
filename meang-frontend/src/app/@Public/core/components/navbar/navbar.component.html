@@ -1,10 +1,43 @@
-<nav class="main-navbar sticky-top">
+<!-- <nav class="main-navbar sticky-top">
   <div class="container">
-    <!-- menu -->
     <ul class="main-menu">
       <li><a href="#">Inicio</a></li>
       <li><a href="#">Mujer</a></li>
       <li><a href="#">Hombre</a></li>
+      <li>
+        <a>{{ authSessio.LoggedRol() }}</a>
+      </li>
+      <ng-container *ngIf="authSessio.loggedIn()">
+        <li *ngIf="authSessio.LoggedRol()">
+          <a [routerLink]="['/admin']">Admin</a>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</nav> -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mx-auto sticky-top">
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav main-menu">
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/home']"
+          >Inicio <span class="sr-only">(current)</span></a
+        >
+      </li>
+      <li *ngFor="let item of category">
+        <a>{{item.ca_name}}</a>
+      </li>
       <ng-container *ngIf="authSessio.loggedIn()">
         <li *ngIf="authSessio.LoggedRol()">
           <a [routerLink]="['/admin']">Admin</a>
