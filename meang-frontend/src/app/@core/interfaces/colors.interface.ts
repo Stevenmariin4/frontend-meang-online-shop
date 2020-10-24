@@ -2,7 +2,7 @@ export interface IColor {
   col_id: number;
   col_name: string;
   col_description: string;
-  is_valid: boolean;
+  is_valid: number;
 }
 
 export interface IResponseDataColors {

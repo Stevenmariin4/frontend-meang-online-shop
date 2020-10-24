@@ -1,1 +1,56 @@
-<p>create-update-promotions works!</p>
+<section class="checkout-section spad">
+  <div class="container">
+    <h1>{{ label }}</h1>
+    <div class="row">
+      <div class="col">
+        <form class="checkout-form" #form="ngForm">
+          <div class="row">
+            <div class="col-md-6">
+              <input
+                type="text"
+                #name="ngModel"
+                [(ngModel)]="formPromotion.pro_name"
+                placeholder="Nombre *"
+                name="name"
+                class="form-control"
+                [ngClass]="{
+                  'is-valid': !name.invalid,
+                  'is-invalid': name.invalid
+                }"
+                required
+              />
+              <div
+                class="alert alert-danger"
+                *ngIf="name.invalid && (name.dirty || name.touched)"
+              >
+                El campo es obligatorio *
+              </div>
+            </div>
+            <div class="col-md-6">
+              <input
+                type="file"
+                #image="ngModel"
+                [(ngModel)]="formPromotion.pro_image"
+                placeholder="Imagen"
+                name="image"
+                class="form-control"
+                (change)="onFileChange($event)"
+              />
+              <button class="site-btn submit-order-btn" (click)="onUpload()">
+                Subir
+              </button>
+            </div>
+          </div>
+          <br />
+          <button
+            class="site-btn submit-order-btn"
+            [ngClass]="{ disabledbtn: !form.valid }"
+            (click)="savePromotion()"
+          >
+            Guardar
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

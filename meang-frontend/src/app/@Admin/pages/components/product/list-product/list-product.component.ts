@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IResponseData } from '@Service/interfaces/product.interface';
 import { ITable } from '@Service/interfaces/table.interface';
 import { ProductsService } from '@Service/services/product/products.service';
+import { basicAlert } from '@Shared/toast';
+import { Types_Alert } from '@Shared/values.config';
 
 @Component({
   selector: 'app-list-product',
@@ -10,7 +13,12 @@ import { ProductsService } from '@Service/services/product/products.service';
 })
 export class ListProductComponent implements OnInit {
   tableProduct: ITable;
-  constructor(private serviceProduct: ProductsService) {
+  sortColumn;
+  filterApplied;
+  pageNumber = 0;
+  pageSize = 10;
+
+  constructor(private serviceProduct: ProductsService, private router: Router) {
     this.tableProduct = {
       table_filters: [],
       table_headers: [
@@ -58,19 +66,29 @@ export class ListProductComponent implements OnInit {
         is_valid: 1,
       },
       limit: 10,
+      page: 0,
     };
     this.serviceProduct.getProductFilter(filter).subscribe(
       (data: IResponseData) => {
         this.poblateTableProduct(data);
       },
-      (err) => {}
+      (err) => {
+        basicAlert(
+          'Productos',
+          'Error Al Obtener Lista',
+          'Aceptar',
+          Types_Alert.SUCCESS
+        );
+        console.log(err);
+      }
     );
   }
 
   poblateTableProduct(data: IResponseData) {
+    this.tableProduct.table_body = [];
     data.body.rows.forEach((element) => {
       this.tableProduct.table_body.push({
-        pro_id: element.pro_id,
+        id: element.prod_id,
         prod_name: element.prod_name,
         prod_description: element.prod_description,
         prod_stock: element.prod_stock,
@@ -83,5 +101,70 @@ export class ListProductComponent implements OnInit {
       });
     });
     this.tableProduct.totalData = data.body.count;
+  }
+
+  redirectCreate(id: any) {
+    if (id !== 0) {
+      this.router.navigate(['/admin/product/update/', id]);
+    } else {
+      this.router.navigate(['/admin/product/create']);
+    }
+  }
+  async actionHandler(action: any) {
+    switch (action.action) {
+      case 'edit':
+        this.router.navigate([`/admin/product/update/${action.idItem}`]);
+        break;
+      case 'delete':
+        //this.deleteCategory(action.idItem);
+        break;
+      default:
+        break;
+    }
+  }
+  pageChanger(page: any) {
+    const filter = {
+      filter: {
+        is_valid: 1,
+      },
+      limit: page.pageSize,
+      page: page.page,
+    };
+    this.serviceProduct.getProductFilter(filter).subscribe(
+      (data: IResponseData) => {
+        this.poblateTableProduct(data);
+      },
+      (err) => {
+        basicAlert(
+          'Productos',
+          'Error Al Obtener Lista',
+          'Aceptar',
+          Types_Alert.SUCCESS
+        );
+        console.log(err);
+      }
+    );
+  }
+  filterTable(toSearch: any) {
+    const filter = {
+      filter: {
+        is_valid: 1,
+        prod_name: toSearch.fieldToSearch,
+      },
+    };
+    this.serviceProduct.getProductFilter(filter).subscribe(
+      (data: IResponseData) => {
+        this.poblateTableProduct(data);
+      },
+      (err) => {
+        basicAlert(
+          'Productos',
+          'Error Al Obtener Lista',
+          'Aceptar',
+          Types_Alert.SUCCESS
+        );
+        console.log(err);
+      }
+    );
   }
 }

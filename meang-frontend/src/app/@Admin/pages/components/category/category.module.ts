@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { SharedModule } from './../../../../@Shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -8,6 +9,6 @@ import { CreateUpdateCategoryComponent } from './create-update-category/create-u
 
 @NgModule({
   declarations: [ListCategoryComponent, CreateUpdateCategoryComponent],
-  imports: [CommonModule, CategoryRoutingModule, SharedModule],
+  imports: [CommonModule, CategoryRoutingModule, SharedModule, FormsModule],
 })
 export class CategoryModule {}

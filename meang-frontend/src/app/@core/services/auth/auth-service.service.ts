@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ISession } from '@Service/interfaces/session.interfaces';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-
+import jwt_decode from 'jwt-decode';
 @Injectable({
   providedIn: 'root',
 })
@@ -31,5 +31,31 @@ export class AuthServiceService {
     }
 
     return role;
+  }
+
+  getTokenExpirationDate(token: string): Date {
+    const decoded = jwt_decode(token);
+
+    if (decoded.exp === undefined) {
+      return null;
+    }
+
+    const date = new Date(0);
+    date.setUTCSeconds(decoded.exp);
+    return date;
+  }
+
+  isTokenExpired(): boolean {
+    const token = JSON.parse(localStorage.getItem('session')) as ISession;
+
+    if (!token) {
+      return true;
+    }
+
+    const date = this.getTokenExpirationDate(token.token);
+    if (date === undefined) {
+      return false;
+    }
+    return !(date.valueOf() > new Date().valueOf());
   }
 }

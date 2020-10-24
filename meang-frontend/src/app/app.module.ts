@@ -1,3 +1,4 @@
+import { SharedModule } from '@Shared/shared.module';
 import { MaterialModule } from './material/material/material.module';
 import { CoreModule } from '@Service/core.module';
 import { PublicModule } from './@Public/pages/public.module';
@@ -30,6 +31,7 @@ import { FormsModule } from '@angular/forms';
     MatSelectModule,
     MatPaginatorModule,
     FormsModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

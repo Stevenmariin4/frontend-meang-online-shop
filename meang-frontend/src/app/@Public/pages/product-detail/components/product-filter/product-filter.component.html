@@ -1,0 +1,76 @@
+<section class="category-section spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 order-2 order-lg-1">
+        <div class="filter-widget">
+          <h2 class="fw-title">Categorias</h2>
+          <ul class="category-menu" *ngFor="let item of SubCategory">
+            <li>
+              <a
+                class="btn aling-left"
+                (click)="getProductbySubcategory(item.sca_id)"
+                >{{ item.sca_name }}</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-9 order-1 order-lg-2 mb-5 mb-lg-0">
+        <div class="row">
+          <div class="col-lg-4 col-sm-6" *ngFor="let item of products">
+            <div class="product-item">
+              <div class="pi-pic">
+                <div class="tag-sale" *ngIf="item.prod_discount">Descuento</div>
+                <img
+                  [src]="item.prod_image"
+                  [alt]="item.prod_name"
+                  class="img-product"
+                />
+                <div class="pi-links">
+                  <a href="#" class="add-card"
+                    ><i class="fas fa-shopping-cart icon-car"></i
+                    ><span>AÑADIR</span></a
+                  >
+                  <span>
+                    <a
+                      class="add-card mf-l-1 btn"
+                      (click)="redirec(item.prod_id)"
+                      ><i class="far fa-eye icon-car"></i
+                      ><span>Visualizar</span></a
+                    ></span
+                  >
+                </div>
+              </div>
+              <div class="pi-text">
+                <h5>
+                  <span class="tachado" *ngIf="item.prod_discount"
+                    >${{ item.prod_price }}</span
+                  >
+                  ${{ item.prod_price_exit }}
+                </h5>
+                <p>
+                  {{ item.prod_name }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="float-right">
+          <mat-paginator
+            #paginator
+            [length]="totaldata"
+            [pageIndex]="pageIndex"
+            [pageSize]="pageSize"
+            (page)="goToPage($event)"
+          ></mat-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Category section end -->

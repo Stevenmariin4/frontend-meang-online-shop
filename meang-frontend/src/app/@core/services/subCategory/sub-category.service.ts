@@ -22,4 +22,28 @@ export class SubCategoryService {
         })
       );
   }
+
+  createSubCategory(body: any) {
+    return this.http.post(`${this.urlbase}${this.urlsubCategory}`, body).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
+  }
+  updateCategory(id: number, body: any) {
+    return this.http
+      .put(`${this.urlbase}${this.urlsubCategory}/${id}`, body)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+  deleteCategory(id: number) {
+    return this.http.delete(`${this.urlbase}${this.urlsubCategory}/${id}`).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
+  }
 }

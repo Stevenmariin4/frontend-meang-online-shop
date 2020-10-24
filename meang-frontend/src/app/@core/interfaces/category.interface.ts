@@ -2,7 +2,7 @@ export interface ICategory {
   ca_id: number;
   ca_name: string;
   ca_description: string;
-  is_valid: boolean;
+  is_valid: number;
 }
 
 export interface IResponseDataCategorys {

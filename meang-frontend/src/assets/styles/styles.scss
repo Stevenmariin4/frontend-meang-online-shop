@@ -1,4 +1,9 @@
 @import "./colors.scss";
+
+.disabledbtn {
+    background-color: gray;
+}
+
 table {
     width: 100%;
 }
@@ -1900,7 +1905,9 @@ ol {
 
 .checkout-form input[type="text"],
 input[type="password"],
-input[type="email"] {
+input[type="email"],
+input[type="file"],
+input[type="select"] {
     width: 100%;
     height: 44px;
     border: none;

@@ -4,6 +4,7 @@ import {
   IResponseDataPromotions,
 } from '@Service/interfaces/promotions.interface';
 import { PromotionsService } from '@Service/services/promotions/promotions.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-carousel-p',
@@ -12,6 +13,7 @@ import { PromotionsService } from '@Service/services/promotions/promotions.servi
 })
 export class CarouselPComponent implements OnInit {
   carrousel: Partial<Ipromotions>[];
+  urlBase = environment.urlImages;
   constructor(private promotionsService: PromotionsService) {
     this.carrousel = [];
   }
@@ -34,7 +36,7 @@ export class CarouselPComponent implements OnInit {
           this.carrousel.push({
             pro_id: element.pro_id,
             pro_name: element.pro_name,
-            pro_image: element.pro_image,
+            pro_image: this.urlBase + element.pro_image,  
           });
         });
       });

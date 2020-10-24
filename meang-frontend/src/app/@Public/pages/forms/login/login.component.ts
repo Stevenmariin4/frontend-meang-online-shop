@@ -21,7 +21,9 @@ export class LoginComponent implements OnInit {
   };
   constructor(private Slogin: LoginService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    localStorage.removeItem('session');
+  }
 
   sigin() {
     this.Slogin.sigin(this.login).subscribe(

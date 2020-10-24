@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { SharedModule } from './../../../../@Shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -8,6 +9,6 @@ import { CreateUpdateSubCategoryComponent } from './create-update-sub-category/c
 
 @NgModule({
   declarations: [ListSubCategoryComponent, CreateUpdateSubCategoryComponent],
-  imports: [CommonModule, SubCategoryRoutingModule, SharedModule],
+  imports: [CommonModule, SubCategoryRoutingModule, SharedModule, FormsModule],
 })
 export class SubCategoryModule {}

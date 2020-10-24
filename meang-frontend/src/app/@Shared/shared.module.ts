@@ -15,12 +15,15 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatInputModule } from '@angular/material/input';
 import { CarouselPComponent } from './components/carousel-p/carousel-p.component';
+import { LoadingComponent } from './components/loading/loading/loading.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
     DynamicTableComponent,
     DynamicFilterComponent,
     CarouselPComponent,
+    LoadingComponent,
   ],
   imports: [
     CommonModule,
@@ -36,7 +39,13 @@ import { CarouselPComponent } from './components/carousel-p/carousel-p.component
     MatCheckboxModule,
     MatRadioModule,
     MatInputModule,
+    MatProgressSpinnerModule,
   ],
-  exports: [DynamicTableComponent, DynamicFilterComponent, CarouselPComponent],
+  exports: [
+    DynamicTableComponent,
+    DynamicFilterComponent,
+    CarouselPComponent,
+    LoadingComponent,
+  ],
 })
 export class SharedModule {}

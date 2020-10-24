@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   ICategory,
   IResponseDataCategorys,
@@ -17,7 +18,8 @@ export class NavbarComponent implements OnInit {
   constructor(
     public authSessio: AuthServiceService,
     private login: LoginService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private router: Router
   ) {
     this.category = [];
   }
@@ -53,5 +55,8 @@ export class NavbarComponent implements OnInit {
       },
       (err) => {}
     );
+  }
+  redirect(id: any) {
+    this.router.navigate(['/product/all/', id]);
   }
 }

@@ -2,10 +2,10 @@ export interface ISubCategory {
   sca_id: number;
   sca_name: string;
   sca_description: string;
-  is_valid: true;
+  is_valid: number;
 }
 
-export interface IResponseDataCategory {
+export interface IResponseDataSubCategory {
   error: boolean;
   status: number;
   body: IResponse;

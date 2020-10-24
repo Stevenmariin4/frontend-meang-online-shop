@@ -1,1 +1,196 @@
-<p>create-update-product works!</p>
+<section class="checkout-section spad">
+  <div class="container">
+    <h1>{{ label }}</h1>
+    <div class="row">
+      <div class="col">
+        <form class="checkout-form" #form="ngForm">
+          <div class="row">
+            <div class="col-md-6">
+              <input
+                type="text"
+                #name="ngModel"
+                [(ngModel)]="formProduct.prod_name"
+                placeholder="Nombre *"
+                name="name"
+                class="form-control"
+                [ngClass]="{
+                  'is-valid': !name.invalid,
+                  'is-invalid': name.invalid
+                }"
+                required
+              />
+              <div
+                class="alert alert-danger"
+                *ngIf="name.invalid && (name.dirty || name.touched)"
+              >
+                El campo es obligatorio *
+              </div>
+            </div>
+            <div class="col-md-6">
+              <input
+                type="text"
+                #description="ngModel"
+                [(ngModel)]="formProduct.prod_description"
+                placeholder="Descripcion"
+                name="description"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <input
+                type="text"
+                #price="ngModel"
+                [(ngModel)]="formProduct.prod_price"
+                placeholder="Precio *"
+                name="price"
+                class="form-control"
+                [ngClass]="{
+                  'is-valid': !price.invalid,
+                  'is-invalid': price.invalid
+                }"
+                required
+              />
+              <div
+                class="alert alert-danger"
+                *ngIf="price.invalid && (price.dirty || price.touched)"
+              >
+                El campo es obligatorio *
+              </div>
+            </div>
+            <div class="col-md-6">
+              <select
+                class="form-control"
+                id="DiscountPrices"
+                #mySelectDiscount
+                (change)="onOptionsSelected(mySelectDiscount.value)"
+              >
+                <option [ngValue]="null" [disabled]="true">
+                  Tiene Descuento ?
+                </option>
+                <option value="True">Si</option>
+                <option Value="False">No</option>
+              </select>
+              <br />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <input
+                *ngIf="formProduct.prod_discount_price == false"
+                type="text"
+                #discount="ngModel"
+                [(ngModel)]="formProduct.prod_discount"
+                placeholder="Porcentaje Descuento"
+                name="discount"
+                class="form-control"
+                disabled
+              />
+              <input
+                *ngIf="formProduct.prod_discount_price == true"
+                type="text"
+                #discount="ngModel"
+                [(ngModel)]="formProduct.prod_discount"
+                placeholder="Porcentaje Descuento"
+                name="discount"
+                class="form-control"
+              />
+            </div>
+            <div class="col-md-6">
+              <input
+                type="text"
+                #stock="ngModel"
+                [(ngModel)]="formProduct.prod_stock"
+                placeholder="Unidades Existentes *"
+                name="stock"
+                class="form-control"
+                [ngClass]="{
+                  'is-valid': !stock.invalid,
+                  'is-invalid': stock.invalid
+                }"
+                required
+              />
+              <div
+                class="alert alert-danger"
+                *ngIf="stock.invalid && (stock.dirty || stock.touched)"
+              >
+                El campo es obligatorio *
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <select
+                class="form-control"
+                id="DiscountPrices"
+                #category="ngModel"
+                name="category"
+                [(ngModel)]="formProduct.ca_id"
+                placeholder="Seleccione Categoria"
+                #mySelectCategory
+                (change)="onOptionsCategory(mySelectCategory.value)"
+              >
+                <option [ngValue]="null" [disabled]="true">
+                  Seleccione una categoria ? *
+                </option>
+                <option *ngFor="let item of arrayCategory" [value]="item.ca_id">
+                  {{ item.ca_name }}
+                </option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <select
+                class="form-control"
+                id="DiscountPrices"
+                #subcategory="ngModel"
+                name="subcategory"
+                [(ngModel)]="formProduct.scan_id"
+                placeholder="Seleccione Sub Categoria"
+                #mySelectSubCategory
+                (change)="onOptionsSubCategory(mySelectSubCategory.value)"
+              >
+                <option [ngValue]="null" [disabled]="true">
+                  Seleccione Sub Categoria ? *
+                </option>
+                <option
+                  *ngFor="let item of arraySubCategory"
+                  [value]="item.sca_id"
+                >
+                  {{ item.sca_name }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-md-6">
+              <input
+                type="file"
+                #image="ngModel"
+                [(ngModel)]="formProduct.prod_image"
+                placeholder="Imagen"
+                name="image"
+                class="form-control"
+                (change)="onFileChange($event)"
+              />
+              <h1>{{ formProduct.prod_image }}</h1>
+            </div>
+            <div class="col-md-6">
+              <button class="site-btn submit-order-btn" (click)="onUpload()">
+                Subir
+              </button>
+            </div>
+          </div>
+          <button
+            class="site-btn submit-order-btn"
+            [ngClass]="{ disabledbtn: !form.valid }"
+            (click)="save()"
+          >
+            Guardar
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

@@ -2,7 +2,7 @@ export interface Ipromotions {
   pro_id: number;
   pro_name: string;
   pro_image: string;
-  is_valid: Boolean;
+  is_valid: number;
 }
 
 export interface IResponseDataPromotions {

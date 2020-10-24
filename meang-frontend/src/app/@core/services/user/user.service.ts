@@ -29,4 +29,12 @@ export class UserService {
       })
     );
   }
+
+  updateUser(id: any, body: any) {
+    return this.http.put(`${this.urlbase}${this.urluser}/${id}`, body).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
+  }
 }

@@ -21,4 +21,28 @@ export class PromotionsService {
         })
       );
   }
+
+  createPromotion(body: any) {
+    return this.http.post(`${this.urlbase}${this.urlpromotion}`, body).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
+  }
+  UpdatePromotion(id: number, body: any) {
+    return this.http
+      .put(`${this.urlbase}${this.urlpromotion}/${id}`, body)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+  deletePromotion(id: any) {
+    return this.http.delete(`${this.urlbase}${this.urlpromotion}/${id}`).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
+  }
 }

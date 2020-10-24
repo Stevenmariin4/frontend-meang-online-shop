@@ -22,4 +22,27 @@ export class ProductsService {
         })
       );
   }
+
+  createProduct(body: any) {
+    return this.http.post(`${this.urlbase}${this.urlproduct}`, body).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
+  }
+  updateProduct(id: any, body: any) {
+    return this.http.put(`${this.urlbase}${this.urlproduct}/${id}`, body).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
+  }
+
+  deleteProduct(id: any) {
+    return this.http.delete(`${this.urlbase}${this.urlproduct}/${id}`).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
+  }
 }

@@ -1,15 +1,17 @@
 export interface Iproduct {
-  pro_id: number;
+  prod_id: number;
   prod_name: string;
   prod_description: string;
   prod_price: number;
-  prod_discount_price: boolean;
+  prod_discount_price: number | boolean;
   prod_discount: number;
   prod_price_exit: number;
   prod_stock: number;
   prod_image: string;
-  is_last_product: Boolean;
-  is_valid: Boolean;
+  is_last_product: number | boolean;
+  ca_id: number;
+  scan_id: number;
+  is_valid: number;
 }
 
 export interface IResponseData {
