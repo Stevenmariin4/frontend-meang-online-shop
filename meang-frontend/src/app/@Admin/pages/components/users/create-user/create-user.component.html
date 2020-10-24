@@ -1,0 +1,124 @@
+<section class="checkout-section spad">
+  <div class="container">
+    <h1>{{ label }}</h1>
+    <div class="row">
+      <div class="col">
+        <form class="checkout-form" #form="ngForm">
+          <div class="row">
+            <div class="col-md-6">
+              <input
+                type="text"
+                #name="ngModel"
+                [(ngModel)]="formClien.use_name"
+                placeholder="Nombres *"
+                name="name"
+                class="form-control"
+                [ngClass]="{
+                  'is-valid': !name.invalid,
+                  'is-invalid': name.invalid
+                }"
+                required
+              />
+              <div
+                class="alert alert-danger"
+                *ngIf="name.invalid && (name.dirty || name.touched)"
+              >
+                El campo es obligatorio *
+              </div>
+            </div>
+            <div class="col-md-6">
+              <input
+                type="text"
+                #lastname="ngModel"
+                [(ngModel)]="formClien.use_lastname"
+                placeholder="Apellidos"
+                name="lastname"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <input
+                type="email"
+                #email="ngModel"
+                [(ngModel)]="formClien.use_email"
+                placeholder="Correo Electronico *"
+                name="email"
+                class="form-control"
+                [ngClass]="{
+                  'is-valid': !email.invalid,
+                  'is-invalid': email.invalid
+                }"
+                required
+              />
+              <div
+                class="alert alert-danger"
+                *ngIf="email.invalid && (email.dirty || email.touched)"
+              >
+                El campo es obligatorio *
+              </div>
+            </div>
+            <div class="col-md-6">
+              <input
+                type="password"
+                #password="ngModel"
+                [(ngModel)]="formClien.use_password"
+                placeholder="Contraseña *"
+                name="password"
+                class="form-control"
+                required
+                [ngClass]="{
+                  'is-valid': !password.invalid,
+                  'is-invalid': password.invalid
+                }"
+              />
+              <div
+                class="alert alert-danger"
+                *ngIf="password.invalid && (password.dirty || password.touched)"
+              >
+                Introduzca Una Contraseña Por Favor
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <input
+                type="text"
+                #phone="ngModel"
+                [(ngModel)]="formClien.use_phone"
+                placeholder="Telefono"
+                name="phone"
+                class="form-control"
+              />
+            </div>
+            <div class="col-md-6">
+              <select
+                class="form-control"
+                #Status="ngModel"
+                name="Status"
+                [(ngModel)]="formClien.use_status"
+                placeholder="Seleccione Categoria"
+                #mySelectCategory
+                (change)="onOptionsSelected(mySelectCategory.value)"
+              >
+                <option [ngValue]="null" [disabled]="true">
+                  Estado Del Usuario ?
+                </option>
+                <option value="1">Activo</option>
+                <option Value="0">Inactivo</option>
+              </select>
+            </div>
+          </div>
+          <button
+            class="site-btn submit-order-btn"
+            [ngClass]="{ disabledbtn: !form.valid }"
+            (click)="saveUser()"
+          >
+            Guardar
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

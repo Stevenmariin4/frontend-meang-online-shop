@@ -1,8 +1,15 @@
 export const environment = {
   production: false,
   urlbase: 'http://localhost:9090/api/',
+  urlImages: 'http://localhost:9090',
   login: 'login',
   user: 'users',
+  product: 'product',
+  subCategory: 'sub-category',
+  Category: 'category',
+  promotion: 'promotions',
+  colors: 'colors',
+  uploads: 'uploads',
   filter: '/filter',
   idCliente: 2,
 };

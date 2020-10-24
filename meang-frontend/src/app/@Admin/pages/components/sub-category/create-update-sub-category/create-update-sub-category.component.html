@@ -1,0 +1,54 @@
+<section class="checkout-section spad">
+  <div class="container">
+    <h1>{{ label }}</h1>
+    <div class="row">
+      <div class="col">
+        <form
+          class="checkout-form"
+          (ngSubmit)="saveSubCategory()"
+          #form="ngForm"
+        >
+          <div class="row">
+            <div class="col-md-6">
+              <input
+                type="text"
+                #name="ngModel"
+                [(ngModel)]="formSubCategory.sca_name"
+                placeholder="Nombre *"
+                name="name"
+                class="form-control"
+                [ngClass]="{
+                  'is-valid': !name.invalid,
+                  'is-invalid': name.invalid
+                }"
+                required
+              />
+              <div
+                class="alert alert-danger"
+                *ngIf="name.invalid && (name.dirty || name.touched)"
+              >
+                El campo es obligatorio *
+              </div>
+            </div>
+            <div class="col-md-6">
+              <input
+                type="text"
+                #description="ngModel"
+                [(ngModel)]="formSubCategory.sca_description"
+                placeholder="Descripcion"
+                name="description"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <button
+            class="site-btn submit-order-btn"
+            [ngClass]="{ disabledbtn: !form.valid }"
+          >
+            Guardar
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10"><h1>LISTA DE USUARIOS</h1></div>
+    <div class="col-2">
+      <button class="btn btn-primary" (click)="redirectCreate(0)">Crear</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <app-dynamic-table
+        [tableStructure]="tableUsers"
+        (tableAction)="actionHandler($event)"
+      ></app-dynamic-table>
+    </div>
+  </div>
+</div>

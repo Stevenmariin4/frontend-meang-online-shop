@@ -1,1 +1,19 @@
 @import "../../../../../assets/styles/styles.scss";
+.bg-dark {
+    background-color: $navbar !important;
+}
+.dropdown-item {
+    color: $white !important;
+}
+.dropdown-menu {
+    text-align: center;
+    background-color: $navbar !important;
+}
+.dropdown-item:focus,
+.dropdown-item:hover {
+    background-color: $pinkacent;
+}
+
+#navbarSupportedContent {
+    margin-left: 3em !important;
+}

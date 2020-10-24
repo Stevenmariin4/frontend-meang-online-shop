@@ -1,3 +1,35 @@
 @import "../../../../assets/styles/styles.scss";
+.mg-t-1{
+  margin-top: 1em;
+}
+.btn-card {
+  background-color: $pinkacent;
+  color: $white;
+}
+.img-product {
+  height: 16.5em;
+  width: 100%;
+}
+.tachado {
+  text-decoration: line-through;
+}
+.mf-l-1 {
+  margin-left: 0.2em;
+}
+.hei-carrousel {
+  height: 39em !important;
+}
+@media (max-width: 425px) {
+  .top-letest-product-section {
+    display: none;
+  }
+  .hei-carrousel {
+    height: 18em !important;
+  }
+}
 
-
+@media (max-width: 770px) {
+  .hei-carrousel {
+    height: 23em !important;
+  }
+}

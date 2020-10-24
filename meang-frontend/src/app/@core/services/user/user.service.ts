@@ -12,7 +12,7 @@ export class UserService {
   urlFilter: string = environment.filter;
   constructor(private http: HttpClient) {}
 
-  getUser(filter?: any, page?: number, pageSize?: number, order?: any) {
+  getUser(filter?: any) {
     return this.http
       .post(`${this.urlbase}${this.urluser}${this.urlFilter}`, filter)
       .pipe(
@@ -24,6 +24,14 @@ export class UserService {
   getMe() {}
   register(body) {
     return this.http.post(`${this.urlbase}${this.urluser}`, body).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
+  }
+
+  updateUser(id: any, body: any) {
+    return this.http.put(`${this.urlbase}${this.urluser}/${id}`, body).pipe(
       map((res: any) => {
         return res;
       })

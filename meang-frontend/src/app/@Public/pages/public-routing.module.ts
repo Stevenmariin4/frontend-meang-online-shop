@@ -31,6 +31,13 @@ const routes: Routes = [
             (m) => m.RegisterModule
           ),
       },
+      {
+        path: 'product',
+        loadChildren: () =>
+          import('./product-detail/product-detail.module').then(
+            (m) => m.ProductDetailModule
+          ),
+      },
     ],
   },
 ];

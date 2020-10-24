@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10"><h1>LISTA DE PRODUCTOS</h1></div>
+    <div class="col-2">
+      <button class="btn btn-primary" (click)="redirectCreate(0)">Crear</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <app-dynamic-table
+        [tableStructure]="tableProduct"
+        (tableAction)="actionHandler($event)"
+        (tableChangePage)="pageChanger($event)"
+        (filter)="filterTable($event)"
+      ></app-dynamic-table>
+    </div>
+  </div>
+</div>
