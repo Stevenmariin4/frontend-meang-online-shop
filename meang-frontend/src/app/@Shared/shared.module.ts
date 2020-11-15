@@ -17,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { CarouselPComponent } from './components/carousel-p/carousel-p.component';
 import { LoadingComponent } from './components/loading/loading/loading.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { QtySelectorComponent } from './components/qty-selector/qty-selector/qty-selector.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     DynamicFilterComponent,
     CarouselPComponent,
     LoadingComponent,
+    QtySelectorComponent,
   ],
   imports: [
     CommonModule,

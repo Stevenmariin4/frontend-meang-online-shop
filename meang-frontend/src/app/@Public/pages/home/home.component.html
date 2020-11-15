@@ -150,7 +150,7 @@
               class="img-product"
             />
             <div class="pi-links">
-              <a href="#" class="add-card"
+              <a class="btn add-card" (click)="addCart(item)"
                 ><i class="fas fa-shopping-cart icon-car"></i
                 ><span>AÑADIR</span></a
               >
@@ -164,9 +164,9 @@
           <div class="pi-text">
             <h5>
               <span class="tachado" *ngIf="item.prod_discount"
-                >${{ item.prod_price }}</span
+                >{{ item.prod_price | currency}}</span
               >
-              ${{ item.prod_price_exit }}
+              {{ item.prod_price_exit | currency }}
             </h5>
             <p>
               {{ item.prod_name }}

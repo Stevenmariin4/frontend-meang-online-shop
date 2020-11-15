@@ -5,7 +5,11 @@
         <div class="col-lg-2 text-center text-lg-left">
           <!-- logo -->
           <a class="site-logo">
-            <img src="../../../../../assets/img/Logo-Moda.png" class ="img-logo" alt="Es-Moda">
+            <img
+              src="../../../../../assets/img/Logo-Moda.png"
+              class="img-logo"
+              alt="Es-Moda"
+            />
           </a>
         </div>
         <div class="col-xl-6 col-lg-5">
@@ -36,12 +40,12 @@
             </ng-template>
 
             <div class="up-item">
-              <div class="shopping-card">
+              <div class="shopping-card click" (click)="open()">
                 <i class="fas fa-shopping-cart"></i>
-                <span>0</span>
+                <span>{{cart.subtotal}}</span>
               </div>
-              <span style="margin-left: 1em">
-                <a href="#">Carrito</a>
+              <span style="margin-left: 1em" class="click" (click)="open()">
+                <a>Carrito</a>
               </span>
             </div>
           </div>

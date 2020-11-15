@@ -6,6 +6,7 @@ import { PublicComponent } from './public.component';
 import { HeaderComponent } from '@shop-core/components/header/header.component';
 import { NavbarComponent } from '@shop-core/components/navbar/navbar.component';
 import { FooterComponent } from '@shop-core/components/footer/footer.component';
+import { ShoppingCartComponent } from '../core/components/shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { FooterComponent } from '@shop-core/components/footer/footer.component';
     HeaderComponent,
     NavbarComponent,
     FooterComponent,
+    ShoppingCartComponent
   ],
   imports: [CommonModule, PublicRoutingModule],
 })
