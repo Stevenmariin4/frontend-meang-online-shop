@@ -1,0 +1,102 @@
+<div id="mySidenav" class="sidenav">
+  <div class="card">
+    <div class="row">
+      <div class="col-8">
+        <img
+          src="../../../../../assets/img/Logo-Moda.png"
+          class="img-logo text-center"
+        />
+      </div>
+      <div class="col-4">
+        <button type="button" class="btn closebtn" (click)="closeNav()">
+          <i class="far fa-times-circle"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div class="card" *ngIf="cart.total === 0">
+    <p class="text-center">No Has Seleccionado Ningun Producto</p>
+  </div>
+  <div class="card mg-lf-1 card-product" *ngFor="let item of cart.product">
+    <br />
+    <div class="row">
+      <div class="col-lg-2">
+        <img [src]="item.prod_image" [alt]="item.prod_name" class="img-fluid" />
+        <button
+          type="button"
+          class="btn btn-sm btn-danger rounded-circle"
+          (click)="clearItem(item)"
+        >
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </div>
+      <div class="col-lg">
+        <div class="row">
+          <div class="col-lg-7">
+            <h5>{{ item.prod_name }}</h5>
+            <button
+              type="button"
+              class="btn btn-sm btn-primary rounded-circle btn-qty"
+              (click)="minus(item)"
+            >
+              <i class="fas fa-minus"></i>
+            </button>
+            <input
+              type="number"
+              class="text-center"
+              [value]="item.prod_qty"
+              class="qty-number"
+            />
+            <button
+              type="button"
+              class="btn btn-sm btn-primary rounded-circle btn-qty"
+              (click)="plus(item)"
+            >
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+          <div class="col-lg">
+            <div *ngIf="item.prod_discount" class="tachado">
+              {{ item.prod_price | currency }}
+            </div>
+            {{ item.prod_price_exit | currency }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <table id="customers">
+      <tr>
+        <th class="text-center">Numero Productos</th>
+        <th class="text-center">Total</th>
+      </tr>
+      <tr>
+        <td class="text-center">{{ cart.subtotal }}</td>
+        <td class="text-center">{{ cart.total | currency }}</td>
+      </tr>
+    </table>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col">
+      <button
+        type="button"
+        class="btn btn-danger btn-block text-center btn-clear"
+        (click)="clear()"
+      >
+        <i class="fas fa-trash-alt"></i> Vaciar
+      </button>
+    </div>
+    <div class="col">
+      <button
+      type="button"
+      class="btn btn-success btn-block text-center"
+    >
+    <i class="fas fa-receipt"></i> Terminar Pedido
+    </button>
+    </div>
+  </div>
+</div>
+<div id="overlay"></div>

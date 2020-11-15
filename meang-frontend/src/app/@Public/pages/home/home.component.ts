@@ -1,7 +1,12 @@
+import { CartService } from '@shop/core/service/cart/cart.service';
 import { environment } from './../../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Iproduct, IResponseData } from '@Service/interfaces/product.interface';
+import {
+  Iproduct,
+  IproductShop,
+  IResponseData,
+} from '@Service/interfaces/product.interface';
 import {
   IResponseDataSubCategory,
   ISubCategory,
@@ -26,7 +31,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private serviceProduct: ProductsService,
     private subCategoryService: SubCategoryService,
-    private router: Router
+    private router: Router,
+    private cartservice: CartService
   ) {
     this.products = [];
     this.SubCategory = [];
@@ -136,7 +142,7 @@ export class HomeComponent implements OnInit {
         prod_id: element.prod_id,
         prod_name: element.prod_name,
         prod_description: element.prod_description,
-        prod_price_exit: element.prod_price_exit,
+        prod_price_exit: Math.round(element.prod_price_exit),
         prod_price: element.prod_price,
         prod_image: this.urlupload + element.prod_image,
         prod_discount: element.prod_discount,
@@ -148,7 +154,7 @@ export class HomeComponent implements OnInit {
             prod_id: element.prod_id,
             prod_name: element.prod_name,
             prod_description: element.prod_description,
-            prod_price_exit: element.prod_price_exit,
+            prod_price_exit: Math.round(element.prod_price_exit),
             prod_price: element.prod_price,
             prod_image: element.prod_image,
             prod_discount: element.prod_discount,
@@ -172,5 +178,11 @@ export class HomeComponent implements OnInit {
 
   redirec(id: any) {
     this.router.navigate(['/product/detail/', id]);
+  }
+  addCart(data: IproductShop) {
+    if (!data.prod_qty) {
+      data.prod_qty = 1;
+    }
+    this.cartservice.manageProduct(data);
   }
 }

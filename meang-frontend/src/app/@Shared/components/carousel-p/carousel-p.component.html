@@ -11,11 +11,7 @@
           <div class="carousel-item active">
             <img
               class="d-block w-100"
-              [src]="
-                carrousel[0].pro_image === undefined
-                  ? ''
-                  : carrousel[0].pro_image
-              "
+              [src]="!carrousel[0].pro_image ? '' : carrousel[0].pro_image"
               [alt]="carrousel[0].pro_name"
             />
           </div>
