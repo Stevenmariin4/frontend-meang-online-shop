@@ -153,4 +153,5 @@ export class ProductFilterComponent implements OnInit {
     };
     this.getProduct(filter);
   }
+  
 }

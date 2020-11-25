@@ -1,0 +1,212 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-4 order-md-2 mb-4">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-muted">Tu Carrito</span>
+        <span class="badge badge-secondary badge-pill">{{
+          cart.subtotal
+        }}</span>
+      </h4>
+      <ul class="list-group mb-3">
+        <li
+          class="list-group-item d-flex justify-content-between lh-condensed"
+          *ngFor="let item of cart.product; let i = index"
+        >
+          <div>
+            <h6 class="my-0">{{ item.prod_name }}</h6>
+            <small class="text-muted">{{ item.prod_description }}</small>
+          </div>
+          <span class="text-muted">{{ item.prod_price_exit | currency }}</span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between">
+          <span>Total</span>
+          <strong>{{ cart.total | currency }}</strong>
+        </li>
+      </ul>
+
+      <form class="card p-2 checkout-form">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Promo Codigo" />
+          <div class="input-group-append">
+            <button type="button" class="site-btn submit-order-btn mb-4">
+              Validar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-8 order-md-1 text-center">
+      <h2 class="mb-3">Informacion de contacto</h2>
+      <hr />
+      <form class="checkout-form" #forma="ngForm">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <input
+              type="text"
+              #name="ngModel"
+              [(ngModel)]="facture.use_name"
+              class="form-control text-center"
+              placeholder="Nombre *"
+              name="name"
+              required
+              [ngClass]="{
+                'is-valid': !name.invalid,
+                'is-invalid': name.invalid
+              }"
+            />
+            <div
+              class="alert alert-danger"
+              *ngIf="name.invalid && (name.dirty || name.touched)"
+            >
+              Campo Obligatorio
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <input
+              type="text"
+              #lastname="ngModel"
+              [(ngModel)]="facture.use_lastname"
+              class="form-control text-center"
+              name="lastname"
+              placeholder="Apellidos"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <div class="mb-3">
+              <input
+                type="email"
+                #email="ngModel"
+                [(ngModel)]="facture.use_email"
+                class="form-control text-center"
+                name="email"
+                placeholder="Email *"
+                required
+                [ngClass]="{
+                  'is-valid': !email.invalid,
+                  'is-invalid': email.invalid
+                }"
+              />
+              <div
+                class="alert alert-danger"
+                *ngIf="email.invalid && (email.dirty || email.touched)"
+              >
+                Campo Obligatorio
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <input
+              type="text"
+              #phone="ngModel"
+              [(ngModel)]="facture.use_phone"
+              class="form-control text-center"
+              name="phone"
+              placeholder="Celular *"
+              required
+              [ngClass]="{
+                'is-valid': !phone.invalid,
+                'is-invalid': phone.invalid
+              }"
+            />
+            <div
+              class="alert alert-danger"
+              *ngIf="phone.invalid && (phone.dirty || phone.touched)"
+            >
+              Campo Obligatorio
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <input
+              type="text"
+              #address="ngModel"
+              [(ngModel)]="facture.use_address"
+              class="form-control text-center"
+              name="address"
+              placeholder="Dirrecion *"
+              required
+              [ngClass]="{
+                'is-valid': !address.invalid,
+                'is-invalid': address.invalid
+              }"
+            />
+            <div
+              class="alert alert-danger"
+              *ngIf="address.invalid && (address.dirty || address.touched)"
+            >
+              Campo Obligatorio
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <input
+              type="text"
+              #city="ngModel"
+              [(ngModel)]="facture.use_city"
+              class="form-control text-center"
+              name="city"
+              placeholder="Ciudad *"
+              required
+              [ngClass]="{
+                'is-valid': !city.invalid,
+                'is-invalid': city.invalid
+              }"
+            />
+            <div
+              class="alert alert-danger"
+              *ngIf="city.invalid && (city.dirty || city.touched)"
+            >
+              Campo Obligatorio
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <input
+              type="text"
+              #street="ngModel"
+              [(ngModel)]="facture.use_street"
+              class="form-control text-center"
+              name="street"
+              placeholder="Barrio *"
+              required
+              [ngClass]="{
+                'is-valid': !street.invalid,
+                'is-invalid': street.invalid
+              }"
+            />
+            <div
+              class="alert alert-danger"
+              *ngIf="street.invalid && (street.dirty || street.touched)"
+            >
+              Campo Obligatorio
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <input
+              type="text"
+              #home="ngModel"
+              [(ngModel)]="facture.use_home"
+              class="form-control text-center"
+              name="home"
+              placeholder="Apartamento Casa Local Oficina"
+            />
+          </div>
+        </div>
+        <button
+          class="site-btn submit-order-btn mb-4"
+          [ngClass]="{ disabledbtn: !forma.valid }"
+          [disabled]="!forma.valid"
+          type="button"
+          (click)="createFacture()"
+        >
+          Finalizar Compra
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

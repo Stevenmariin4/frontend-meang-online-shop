@@ -20,6 +20,7 @@ import { Types_Alert } from '@Shared/values.config';
 import { IFile } from '@Service/interfaces/file.interface';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { PortalModule } from '@angular/cdk/portal';
+import { environment } from 'src/environments/environment';
 export interface User {
   name: string;
 }
@@ -50,6 +51,7 @@ export class CreateUpdateProductComponent implements OnInit {
   IFile: IFile;
   DataFile: Array<Partial<IFile>>;
   idProduct: number;
+  uriUpload = environment.urlImages;
   constructor(
     private categoryService: CategoryService,
     private subcategoryService: SubCategoryService,
@@ -103,7 +105,7 @@ export class CreateUpdateProductComponent implements OnInit {
         prod_price: element.prod_price,
         prod_discount_price: element.prod_discount_price,
         prod_discount: element.prod_discount,
-        prod_image: element.prod_image,
+        prod_image: this.uriUpload + element.prod_image,
         ca_id: element.ca_id,
         scan_id: element.scan_id,
       };

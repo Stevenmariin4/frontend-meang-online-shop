@@ -1,10 +1,15 @@
 import { environment } from './../../../../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Iproduct, IResponseData } from '@Service/interfaces/product.interface';
+import {
+  Iproduct,
+  IproductShop,
+  IResponseData,
+} from '@Service/interfaces/product.interface';
 import { ProductsService } from '@Service/services/product/products.service';
 import { basicAlert } from '@Shared/toast';
 import { Types_Alert } from '@Shared/values.config';
+import { CartService } from '@shop/core/service/cart/cart.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -12,13 +17,14 @@ import { Types_Alert } from '@Shared/values.config';
   styleUrls: ['./product-detail.component.scss'],
 })
 export class ProductDetailComponent implements OnInit {
-  productDetail: Partial<Iproduct>;
+  productDetail: IproductShop;
   idProduct: number;
   urlupload = environment.urlImages;
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
-    private productService: ProductsService
+    private productService: ProductsService,
+    private carservice: CartService
   ) {}
 
   ngOnInit(): void {
@@ -53,8 +59,8 @@ export class ProductDetailComponent implements OnInit {
             prod_discount: element.prod_discount,
             prod_price_exit: element.prod_price_exit,
             prod_stock: element.prod_stock,
+            prod_qty: 0,
             prod_image: this.urlupload + element.prod_image,
-            is_last_product: element.is_last_product,
           };
         });
       },
@@ -68,5 +74,19 @@ export class ProductDetailComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+  plus(product: IproductShop) {
+    product.prod_qty += 1;
+    this.carservice.manageProduct(product);
+  }
+  minus(product: IproductShop) {
+    product.prod_qty -= 1;
+    this.carservice.manageProduct(product);
+  }
+  addCart(data: IproductShop) {
+    if (!data.prod_qty) {
+      data.prod_qty = 1;
+    }
+    this.carservice.manageProduct(data);
   }
 }

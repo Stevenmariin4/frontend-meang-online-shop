@@ -10,7 +10,7 @@ const routes: Routes = [
     canActivateChild: [AdminGuard],
     children: [
       {
-        path: '',
+        path: 'factures',
         loadChildren: () =>
           import('./components/dashboard/dashboard.module').then(
             (m) => m.DashboardModule

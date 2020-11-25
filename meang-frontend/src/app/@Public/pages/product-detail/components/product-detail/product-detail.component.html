@@ -49,8 +49,10 @@
         <h2 class="p-title">{{ productDetail.prod_name }}</h2>
         <h3 class="p-price">
           <span *ngIf="productDetail.prod_discount" class="tachado">
-            $ {{ productDetail.prod_price }} </span
-          ><span class="ml-1">${{ productDetail.prod_price_exit }}</span>
+            {{ productDetail.prod_price | currency }} </span
+          ><span class="ml-1">{{
+            productDetail.prod_price_exit | currency
+          }}</span>
         </h3>
         <h4 class="p-stock">
           Disponibilidad: <span>{{ productDetail.prod_stock }}</span>
@@ -62,7 +64,7 @@
           <i class="fa fa-star-o"></i>
           <i class="fa fa-star-o fa-fade"></i>
         </div>
-        <div class="fw-size-choose">
+        <!-- <div class="fw-size-choose">
           <p>Tallas</p>
           <div class="sc-item">
             <input type="radio" name="sc" id="xs-size" />
@@ -88,12 +90,38 @@
             <input type="radio" name="sc" id="xxl-size" />
             <label for="xxl-size">42</label>
           </div>
-        </div>
-        <div class="quantity">
-          <p>Cantidad</p>
-          <div class="pro-qty"><input type="text" value="1" /></div>
-        </div>
-        <a href="#" class="site-btn">Comprar Ahora</a>
+        </div> -->
+        <!-- <div class="quantity">
+          <div class="row">
+            <div class="col-lg-7">
+              <p>Cantidad</p>
+              <h5>{{ productDetail.prod_name }}</h5>
+              <button
+                type="button"
+                class="btn btn-sm btn-primary rounded-circle btn-qty"
+                (click)="minus(productDetail)"
+              >
+                <i class="fas fa-minus"></i>
+              </button>
+              <input
+                type="number"
+                class="text-center"
+                [value]="productDetail.prod_qty"
+                class="qty-number"
+              />
+              <button
+                type="button"
+                class="btn btn-sm btn-primary rounded-circle btn-qty"
+                (click)="plus(productDetail)"
+              >
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div> -->
+        <a class="btn btn-sm site-btn" (click)="addCart(productDetail)"
+          >Comprar Ahora</a
+        >
         <div id="accordion" class="accordion-area">
           <div class="panel">
             <div class="panel-header" id="headingOne">

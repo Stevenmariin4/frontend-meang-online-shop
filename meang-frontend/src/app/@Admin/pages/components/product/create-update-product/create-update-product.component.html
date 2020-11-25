@@ -174,7 +174,11 @@
                 class="form-control"
                 (change)="onFileChange($event)"
               />
-              <h1>{{ formProduct.prod_image }}</h1>
+              <div class="row">
+                <div class="col-md-4 text-center">
+                  <img [src]="formProduct.prod_image" class="img-fluid" />
+                </div>
+              </div>
             </div>
             <div class="col-md-6">
               <button class="site-btn submit-order-btn" (click)="onUpload()">

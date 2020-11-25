@@ -8,8 +8,12 @@ export const environment = {
   subCategory: 'sub-category',
   Category: 'category',
   promotion: 'promotions',
+  facture: 'facture',
+  factureStatus: 'facture/status',
+  factureDetail: 'facture/detail',
   colors: 'colors',
   uploads: 'uploads',
   filter: '/filter',
+  statusDefault: 1,
   idCliente: 2,
 };

@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center mt-5"><h1>LISTA DE FACTURAS</h1></div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <app-dynamic-table
+        [tableStructure]="tableFacture"
+        (tableAction)="actionHandler($event)"
+        (tableChangePage)="pageChanger($event)"
+        (filter)="filterTable($event)"
+      ></app-dynamic-table>
+    </div>
+  </div>
+</div>

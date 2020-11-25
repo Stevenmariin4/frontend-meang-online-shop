@@ -1,0 +1,184 @@
+<div class="container">
+  <h1>{{ label }}</h1>
+  <mat-tab-group>
+    <mat-tab label="Informacion Cliente">
+      <div class="row">
+        <div class="col">
+          <form class="checkout-form" #form="ngForm">
+            <div class="row">
+              <div class="col-md-4">
+                <label>Codido Factura</label>
+                <input
+                  type="text"
+                  #name="ngModel"
+                  [(ngModel)]="formFacture.fa_code"
+                  [placeholder]="formFacture.fa_code"
+                  name="name"
+                  class="form-control"
+                  disabled
+                />
+              </div>
+              <div class="col-md-4">
+                <label>Descripcion</label>
+                <input
+                  type="text"
+                  #description="ngModel"
+                  name="fac_description"
+                  [(ngModel)]="formFacture.fac_description"
+                  [placeholder]="formFacture.fac_description"
+                  class="form-control"
+                  disabled
+                />
+              </div>
+              <div class="col-md-4">
+                <label>Valor Factura</label>
+                <input
+                  type="text"
+                  #price="ngModel"
+                  name="fac_total"
+                  [(ngModel)]="formFacture.fac_total"
+                  [placeholder]="formFacture.fac_total"
+                  class="form-control"
+                  disabled
+                />
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-md-4">
+                <label>Codido Promocion</label>
+                <input
+                  type="text"
+                  #price="ngModel"
+                  name="fac_promo_code"
+                  [(ngModel)]="formFacture.fac_promo_code"
+                  [placeholder]="formFacture.fac_promo_code"
+                  class="form-control"
+                  disabled
+                />
+              </div>
+              <div class="col-md-4">
+                <label>Nombre Usuario</label>
+                <input
+                  type="text"
+                  #price="ngModel"
+                  name="use_name"
+                  [(ngModel)]="formFacture.use_name"
+                  [placeholder]="formFacture.use_name"
+                  class="form-control"
+                  disabled
+                />
+              </div>
+              <div class="col-md-4">
+                <label>Apellido Usuario</label>
+                <input
+                  type="text"
+                  #price="ngModel"
+                  name="use_lastname"
+                  [(ngModel)]="formFacture.use_lastname"
+                  [placeholder]="formFacture.use_lastname"
+                  class="form-control"
+                  disabled
+                />
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-md-4">
+                <label>Celular Usuario</label>
+                <input
+                  type="text"
+                  #price="ngModel"
+                  name="use_phone"
+                  [(ngModel)]="formFacture.use_phone"
+                  [placeholder]="formFacture.use_phone"
+                  class="form-control"
+                  disabled
+                />
+              </div>
+              <div class="col-md-4">
+                <label>Dirrecion Factura</label>
+                <input
+                  type="text"
+                  #price="ngModel"
+                  name="use_address"
+                  [(ngModel)]="formFacture.use_address"
+                  [placeholder]="formFacture.use_address"
+                  class="form-control"
+                  disabled
+                />
+              </div>
+              <div class="col-md-4">
+                <label>Ciudad Factura</label>
+                <input
+                  type="text"
+                  #price="ngModel"
+                  name="use_city"
+                  [(ngModel)]="formFacture.use_city"
+                  [placeholder]="formFacture.use_city"
+                  class="form-control"
+                  disabled
+                />
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-md-4">
+                <label class="text-center">Barrio Factura</label>
+                <input
+                  type="text"
+                  #price="ngModel"
+                  name="use_street"
+                  [(ngModel)]="formFacture.use_street"
+                  [placeholder]="formFacture.use_street"
+                  class="form-control"
+                  disabled
+                />
+              </div>
+              <div class="col-md-4">
+                <label>Tipo Vivienda</label>
+                <input
+                  type="text"
+                  #price="ngModel"
+                  name="use_home"
+                  [(ngModel)]="formFacture.use_home"
+                  [placeholder]="formFacture.use_home"
+                  class="form-control"
+                  disabled
+                />
+              </div>
+              <div class="col-md-4">
+                <label>Estado Factura</label>
+                <input
+                  type="text"
+                  #price="ngModel"
+                  [(ngModel)]="formFacture.fac_status"
+                  name="fac_status_name"
+                  [placeholder]="formFacture.fac_status"
+                  class="form-control"
+                  disabled
+                />
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-md-4">
+                <label>Correo Usuario</label>
+                <input
+                  type="text"
+                  #price="ngModel"
+                  name="use_email"
+                  [(ngModel)]="formFacture.use_email"
+                  [placeholder]="formFacture.use_email"
+                  class="form-control"
+                  disabled
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Informacion Pedido">
+      <app-dynamic-table
+        [tableStructure]="tableFactureDetails"
+      ></app-dynamic-table>
+    </mat-tab>
+  </mat-tab-group>
+</div>

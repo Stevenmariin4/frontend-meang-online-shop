@@ -20,3 +20,17 @@ export function basicAlert(
     timerProgressBar: true,
   });
 }
+
+export function ModalAlert(
+  title: string,
+  text: string,
+  btn: string,
+  icon: Types_Alert
+) {
+  Swal.fire({
+    title,
+    text,
+    icon,
+    confirmButtonText: btn,
+  });
+}

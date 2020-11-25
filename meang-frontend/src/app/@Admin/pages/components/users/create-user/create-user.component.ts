@@ -22,7 +22,6 @@ export class CreateUserComponent implements OnInit {
     use_lastname: '',
     use_age: 0,
     use_email: '',
-    use_password: '',
     use_phone: '',
     use_status: 1,
     ro_id: environment.idCliente,
@@ -73,7 +72,6 @@ export class CreateUserComponent implements OnInit {
         use_email: element.use_email,
         use_phone: element.use_phone,
         use_status: element.use_status,
-        use_password: element.use_password,
       };
     });
   }

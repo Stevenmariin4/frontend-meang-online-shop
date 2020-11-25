@@ -12,11 +12,7 @@ import { ICart } from '@Service/interfaces/shop.car.interface';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  cart: ICart = {
-    subtotal: 0,
-    total: 0,
-    product: [],
-  };
+  cart: ICart;
   constructor(
     public authSessio: AuthServiceService,
     private login: LoginService,
@@ -29,7 +25,9 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.cart = this.carservice.initialize();
+  }
   logOut() {
     this.login.logout().subscribe((data) => {
       if (!data.error) {
