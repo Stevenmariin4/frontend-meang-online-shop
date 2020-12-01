@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
-  urlbase: 'http://localhost:9090/api/',
-  urlImages: 'http://localhost:9090',
+  urlbase: 'https://api-esmoda-store.herokuapp.com/api/',
+  urlImages: 'https://api-esmoda-store.herokuapp.com',
   login: 'login',
   user: 'users',
   product: 'product',
