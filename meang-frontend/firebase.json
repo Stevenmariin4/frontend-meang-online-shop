@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/index.html",
+    "public": "dist/meang-frontend",
     "ignore": [
       "firebase.json",
       "**/.*",
