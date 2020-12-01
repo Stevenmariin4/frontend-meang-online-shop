@@ -3,6 +3,8 @@ import { ICart } from './../../../../@core/interfaces/shop.car.interface';
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '@shop/core/service/cart/cart.service';
 import { Router } from '@angular/router';
+import { basicAlert } from '@Shared/toast';
+import { Types_Alert } from '@Shared/values.config';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -36,6 +38,12 @@ export class ShoppingCartComponent implements OnInit {
   // Limpiar el carrito de compras
   clear() {
     this.carservice.clear();
+    basicAlert(
+      'Producto',
+      'El Carrito Ha Sido Limpiado',
+      'Aceptar',
+      Types_Alert.SUCCESS
+    );
   }
   // Cerrar la pestaña de carrito de compras
   closeNav() {
@@ -44,6 +52,12 @@ export class ShoppingCartComponent implements OnInit {
   // Eliminar un item
   clearItem(product) {
     this.manageProductUnitiInfo(0, product);
+    basicAlert(
+      'Producto',
+      'Producto Eliminado Correctamente',
+      'Aceptar',
+      Types_Alert.SUCCESS
+    );
   }
   // Sumar productos
   plus(product: IproductShop) {

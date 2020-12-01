@@ -1,157 +1,28 @@
 <app-carousel-p></app-carousel-p>
 <!-- Seccion de Productos -->
-<!-- <section class="top-letest-product-section">
-  <div class="container">
-    <div class="section-title">
-      <h2>ULTIMOS PRODUCTOS</h2>
-    </div>
-    <div class="container">
-      <div class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="row">
-              <div class="col-3" *ngFor="let item of carrouselLastProductOne">
-                <div class="product-slider">
-                  <div class="product-item">
-                    <div class="pi-pic">
-                      <img
-                        [src]="item.prod_image"
-                        [alt]="item.prod_name"
-                        class=".img-product"
-                      />
-                      <div class="pi-links">
-                        <a href="#" class="add-card">
-                          <i class="fas fa-shopping-cart icon-car"></i
-                          ><span>AÑADIR</span></a
-                        >
-                      </div>
-                    </div>
-                    <div class="card-body">
-                      <h5 class="card-title">
-                        {{ item.prod_name }} $ {{ item.prod_price }}
-                      </h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row">
-              <div class="col-3">
-                <div class="product-slider">
-                  <div class="product-item">
-                    <div class="pi-pic">
-                      <img
-                        src="https://thumbs.dreamstime.com/z/modelos-de-moda-del-hombre-y-de-la-mujer-que-miran-lejos-38190286.jpg alt="
-                      />
-                      <div class="pi-links">
-                        <a href="#" class="add-card">
-                          <i class="fas fa-shopping-cart icon-car"></i
-                          ><span>AÑADIR</span></a
-                        >
-                      </div>
-                    </div>
-                    <div class="card-body">
-                      <h5 class="card-title">Blusa Mujer $ 35.700</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-3">
-                <div class="product-slider">
-                  <div class="product-item">
-                    <div class="pi-pic">
-                      <img
-                        src="https://thumbs.dreamstime.com/z/modelos-de-moda-del-hombre-y-de-la-mujer-que-miran-lejos-38190286.jpg alt="
-                      />
-                      <div class="pi-links">
-                        <a href="#" class="add-card">
-                          <i class="fas fa-shopping-cart icon-car"></i
-                          ><span>AÑADIR</span></a
-                        >
-                      </div>
-                    </div>
-                    <div class="card-body">
-                      <h5 class="card-title">Blusa Mujer $ 35.700</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-3">
-                <div class="product-slider">
-                  <div class="product-item">
-                    <div class="pi-pic">
-                      <img
-                        src="https://thumbs.dreamstime.com/z/modelos-de-moda-del-hombre-y-de-la-mujer-que-miran-lejos-38190286.jpg alt="
-                      />
-                      <div class="pi-links">
-                        <a href="#" class="add-card">
-                          <i class="fas fa-shopping-cart icon-car"></i
-                          ><span>AÑADIR</span></a
-                        >
-                      </div>
-                    </div>
-                    <div class="card-body">
-                      <h5 class="card-title">Blusa Mujer $ 35.700</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-3">
-                <div class="product-slider">
-                  <div class="product-item">
-                    <div class="pi-pic">
-                      <img
-                        src="https://thumbs.dreamstime.com/z/modelos-de-moda-del-hombre-y-de-la-mujer-que-miran-lejos-38190286.jpg alt="
-                      />
-                      <div class="pi-links">
-                        <a href="#" class="add-card">
-                          <i class="fas fa-shopping-cart icon-car"></i
-                          ><span>AÑADIR</span></a
-                        >
-                      </div>
-                    </div>
-                    <div class="card-body">
-                      <h5 class="card-title">Blusa Mujer $ 35.700</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
+
 <!-- Product filter section -->
 <section class="product-filter-section mg-t-1">
-  <div class="container">
-    <div class="section-title">
-      <h2>EXPLORA LOS PRODUCTOS MÁS VENDIDOS</h2>
-    </div>
-    <ul class="product-filter-menu">
-      <li><a class="btn" (click)="getProduct()">Todos</a></li>
-      <li *ngFor="let item of SubCategory">
-        <a class="btn" (click)="getProductbySubcategory(item.sca_id)">{{
+    <div class="container">
+        <div class="section-title">
+            <h2>EXPLORA LOS PRODUCTOS MÁS VENDIDOS</h2>
+        </div>
+        <ul class="product-filter-menu">
+            <li><a class="btn" (click)="getProduct()">Todos</a></li>
+            <li *ngFor="let item of SubCategory">
+                <a class="btn" (click)="getProductbySubcategory(item.sca_id)">{{
           item.sca_name
         }}</a>
-      </li>
-    </ul>
-    <div class="row">
-      <div class="col-lg-3 col-sm-6" *ngFor="let item of products">
-        <div class="product-item">
-          <div class="pi-pic">
-            <div class="tag-sale" *ngIf="item.prod_discount">Descuento</div>
-            <img
-              [src]="item.prod_image"
-              [alt]="item.prod_name"
-              class="img-product"
-            />
-            <div class="pi-links">
-              <a class="btn add-card" (click)="addCart(item)"
-                ><i class="fas fa-shopping-cart icon-car"></i
+            </li>
+        </ul>
+        <div class="row">
+            <div class="col-lg-3 col-sm-6" *ngFor="let item of products">
+                <div class="product-item">
+                    <div class="pi-pic">
+                        <div class="tag-sale" *ngIf="item.prod_discount">Descuento</div>
+                        <img [src]="item.prod_image" [alt]="item.prod_name" class="img-product" />
+                        <div class="pi-links">
+                            <a class="btn add-card" (click)="addCart(item)"><i class="fas fa-shopping-cart icon-car"></i
                 ><span>AÑADIR</span></a
               >
               <span>

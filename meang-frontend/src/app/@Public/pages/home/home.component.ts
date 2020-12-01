@@ -184,5 +184,11 @@ export class HomeComponent implements OnInit {
       data.prod_qty = 1;
     }
     this.cartservice.manageProduct(data);
+    basicAlert(
+      'Producto',
+      'Producto Agregado Correctamente',
+      'Aceptar',
+      Types_Alert.SUCCESS
+    );
   }
 }
