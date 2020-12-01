@@ -1,0 +1,75 @@
+[debug] [2020-12-01T19:19:05.209Z] ----------------------------------------------------------------------
+[debug] [2020-12-01T19:19:05.212Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Jmarin\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2020-12-01T19:19:05.212Z] CLI Version:   8.16.2
+[debug] [2020-12-01T19:19:05.212Z] Platform:      win32
+[debug] [2020-12-01T19:19:05.212Z] Node Version:  v12.14.1
+[debug] [2020-12-01T19:19:05.213Z] Time:          Tue Dec 01 2020 14:19:05 GMT-0500 (GMT-05:00)
+[debug] [2020-12-01T19:19:05.213Z] ----------------------------------------------------------------------
+[debug] [2020-12-01T19:19:05.214Z] 
+[debug] [2020-12-01T19:19:05.221Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-12-01T19:19:05.222Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Jmarin\Desktop\Nueva carpeta (2)\frontend-meang-online-shop\meang-frontend
+
+Before we get started, keep in mind:
+
+  * You are initializing in an existing Firebase project directory
+
+[debug] [2020-12-01T19:23:48.807Z] ----------------------------------------------------------------------
+[debug] [2020-12-01T19:23:48.809Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Jmarin\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2020-12-01T19:23:48.809Z] CLI Version:   8.16.2
+[debug] [2020-12-01T19:23:48.809Z] Platform:      win32
+[debug] [2020-12-01T19:23:48.809Z] Node Version:  v12.14.1
+[debug] [2020-12-01T19:23:48.811Z] Time:          Tue Dec 01 2020 14:23:48 GMT-0500 (GMT-05:00)
+[debug] [2020-12-01T19:23:48.811Z] ----------------------------------------------------------------------
+[debug] [2020-12-01T19:23:48.811Z] 
+[debug] [2020-12-01T19:23:48.819Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-12-01T19:23:48.819Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Jmarin\Desktop\Nueva carpeta (2)\frontend-meang-online-shop\meang-frontend
+
+Before we get started, keep in mind:
+
+  * You are initializing in an existing Firebase project directory
+
+[debug] [2020-12-01T19:25:26.141Z] ----------------------------------------------------------------------
+[debug] [2020-12-01T19:25:26.143Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Jmarin\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2020-12-01T19:25:26.143Z] CLI Version:   8.16.2
+[debug] [2020-12-01T19:25:26.144Z] Platform:      win32
+[debug] [2020-12-01T19:25:26.144Z] Node Version:  v12.14.1
+[debug] [2020-12-01T19:25:26.145Z] Time:          Tue Dec 01 2020 14:25:26 GMT-0500 (GMT-05:00)
+[debug] [2020-12-01T19:25:26.145Z] ----------------------------------------------------------------------
+[debug] [2020-12-01T19:25:26.145Z] 
+[debug] [2020-12-01T19:25:26.154Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-12-01T19:25:26.154Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Jmarin\Desktop\Nueva carpeta (2)\frontend-meang-online-shop\meang-frontend
+
+Before we get started, keep in mind:
+
+  * You are initializing in an existing Firebase project directory
+

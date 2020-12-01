@@ -1,3 +1,19 @@
 export const environment = {
-  production: true
+  production: true,
+  urlbase: 'https://api-esmoda-store.herokuapp.com/api/',
+  urlImages: 'https://api-esmoda-store.herokuapp.com',
+  login: 'login',
+  user: 'users',
+  product: 'product',
+  subCategory: 'sub-category',
+  Category: 'category',
+  promotion: 'promotions',
+  facture: 'facture',
+  factureStatus: 'facture/status',
+  factureDetail: 'facture/detail',
+  colors: 'colors',
+  uploads: 'uploads',
+  filter: '/filter',
+  statusDefault: 1,
+  idCliente: 2,
 };
