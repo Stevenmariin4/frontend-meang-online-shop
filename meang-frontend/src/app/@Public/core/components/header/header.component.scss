@@ -2,12 +2,29 @@
 .Loggend {
     color: $green;
 }
+
 .loggendIn {
     color: $red;
 }
+
 .img-logo {
     width: 5em;
 }
+
+.img-logo-min {
+    width: 4em;
+    display: none;
+}
+
 .click {
     cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .site-logo {
+        display: none !important;
+    }
+    .img-logo-min {
+        display: block;
+    }
 }
