@@ -1,15 +1,17 @@
+import { async } from '@angular/core/testing';
+import { ColorProductService } from './../../../../../@core/services/color-product/color-product.service';
+import { SizeProductService } from './../../../../../@core/services/sizes-product/size-product.service';
+import { ITable } from './../../../../../@core/interfaces/table.interface';
 import { ProductsService } from '@Service/services/product/products.service';
 import { UploadService } from './../../../../../@core/services/upload/upload.service';
 import { SubCategoryService } from './../../../../../@core/services/subCategory/sub-category.service';
 import { CategoryService } from './../../../../../@core/services/category/category.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import {
   ICategory,
   IResponseDataCategorys,
 } from '@Service/interfaces/category.interface';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
 import { Iproduct, IResponseData } from '@Service/interfaces/product.interface';
 import {
   IResponseDataSubCategory,
@@ -19,12 +21,12 @@ import { basicAlert } from '@Shared/toast';
 import { Types_Alert } from '@Shared/values.config';
 import { IFile } from '@Service/interfaces/file.interface';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { PortalModule } from '@angular/cdk/portal';
 import { environment } from 'src/environments/environment';
 import {
   AngularFireStorage,
   AngularFireUploadTask,
 } from '@angular/fire/storage';
+import { CreateProductColorComponent } from '@Shared/components/create-product-color/create-product-color.component';
 export interface User {
   name: string;
 }
@@ -35,6 +37,8 @@ export interface User {
 })
 export class CreateUpdateProductComponent implements OnInit {
   label: string;
+  tableProductColor: ITable;
+  tableProductSize: ITable;
   formProduct: Partial<Iproduct> = {
     prod_name: '',
     prod_description: '',
@@ -65,11 +69,48 @@ export class CreateUpdateProductComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private serviceProduct: ProductsService,
     private router: Router,
-    private afStorage: AngularFireStorage
+    private afStorage: AngularFireStorage,
+    private productSize: SizeProductService,
+    private productColor: ColorProductService,
+    public dialog: MatDialog
   ) {
     this.arrayCategory = [];
     this.arraySubCategory = [];
     this.DataFile = [];
+    this.tableProductColor = {
+      table_filters: [],
+      table_headers: [
+        {
+          propertyName: 'size_name',
+          nameToShow: 'Nombre',
+          sort: 'asc',
+          inputType: 'text',
+        },
+        { propertyName: 'actions', nameToShow: 'Acciones', sort: null },
+      ],
+      table_body: [],
+      pageSize: 10,
+      totalData: 30,
+      numOfPages: 4,
+      currentPage: 1,
+    };
+    this.tableProductSize = {
+      table_filters: [],
+      table_headers: [
+        {
+          propertyName: 'col_name',
+          nameToShow: 'Nombre',
+          sort: 'asc',
+          inputType: 'text',
+        },
+        { propertyName: 'actions', nameToShow: 'Acciones', sort: null },
+      ],
+      table_body: [],
+      pageSize: 10,
+      totalData: 30,
+      numOfPages: 4,
+      currentPage: 1,
+    };
   }
 
   async ngOnInit() {
@@ -77,7 +118,8 @@ export class CreateUpdateProductComponent implements OnInit {
       if (res.id != null || res.id !== undefined) {
         this.idProduct = res.id;
         this.label = 'Actualizar Producto';
-        this.getProduct(res.id);
+        await this.getProduct(res.id);
+        await this.getProductSize(res.id);
       } else {
         this.label = 'Crear Producto';
       }
@@ -98,6 +140,36 @@ export class CreateUpdateProductComponent implements OnInit {
         this.poblateTableProduct(data);
       },
       (err) => {}
+    );
+  }
+  getProductSize(id) {
+    const filter = {
+      filter: {
+        prod_id: id,
+        is_valid: 1,
+      },
+      limit: 10,
+    };
+    this.productSize.getFilter(filter).subscribe(
+      (data: any) => {},
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+  getProductColor(id) {
+    const filter = {
+      filter: {
+        prod_id: id,
+        is_valid: 1,
+      },
+      limit: 10,
+    };
+    this.productColor.getFilter(filter).subscribe(
+      (data: any) => {},
+      (err) => {
+        console.log(err);
+      }
     );
   }
 
@@ -336,5 +408,74 @@ export class CreateUpdateProductComponent implements OnInit {
         this.formProduct.prod_image = url;
       });
     }
+  }
+  openDialogCreatecolor() {
+    const dialogRef = this.dialog.open(CreateProductColorComponent, {
+      data: {
+        action: 2,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(async (res) => {
+      if (res) {
+      }
+    });
+  }
+  async actionHandler(action: any) {
+    switch (action.action) {
+      case 'edit':
+        this.router.navigate([`/admin/product/update/${action.idItem}`]);
+        break;
+      case 'delete':
+        //this.deleteCategory(action.idItem);
+        break;
+      default:
+        break;
+    }
+  }
+  pageChanger(page: any) {
+    const filter = {
+      filter: {
+        is_valid: 1,
+      },
+      limit: page.pageSize,
+      page: page.page,
+    };
+    this.serviceProduct.getProductFilter(filter).subscribe(
+      (data: IResponseData) => {
+        this.poblateTableProduct(data);
+      },
+      (err) => {
+        basicAlert(
+          'Productos',
+          'Error Al Obtener Lista',
+          'Aceptar',
+          Types_Alert.SUCCESS
+        );
+        console.log(err);
+      }
+    );
+  }
+  filterTable(toSearch: any) {
+    const filter = {
+      filter: {
+        is_valid: 1,
+        prod_name: toSearch.fieldToSearch,
+      },
+    };
+    this.serviceProduct.getProductFilter(filter).subscribe(
+      (data: IResponseData) => {
+        this.poblateTableProduct(data);
+      },
+      (err) => {
+        basicAlert(
+          'Productos',
+          'Error Al Obtener Lista',
+          'Aceptar',
+          Types_Alert.SUCCESS
+        );
+        console.log(err);
+      }
+    );
   }
 }

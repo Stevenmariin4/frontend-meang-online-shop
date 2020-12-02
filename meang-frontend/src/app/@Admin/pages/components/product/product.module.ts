@@ -9,6 +9,7 @@ import { CreateUpdateProductComponent } from './create-update-product/create-upd
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MaterialModule } from 'src/app/material/material/material.module';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [ListProductComponent, CreateUpdateProductComponent],
@@ -21,6 +22,7 @@ import { MaterialModule } from 'src/app/material/material/material.module';
     MatFormFieldModule,
     MaterialModule,
     ReactiveFormsModule,
+    MatTabsModule,
   ],
 })
 export class ProductModule {}

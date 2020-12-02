@@ -5,6 +5,8 @@ export const environment = {
   login: 'login',
   user: 'users',
   product: 'product',
+  productSize: 'product-size',
+  productColor: 'product-color',
   subCategory: 'sub-category',
   Category: 'category',
   promotion: 'promotions',

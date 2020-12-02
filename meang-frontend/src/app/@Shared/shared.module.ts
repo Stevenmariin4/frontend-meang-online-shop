@@ -18,6 +18,7 @@ import { CarouselPComponent } from './components/carousel-p/carousel-p.component
 import { LoadingComponent } from './components/loading/loading/loading.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { QtySelectorComponent } from './components/qty-selector/qty-selector/qty-selector.component';
+import { CreateProductColorComponent } from './components/create-product-color/create-product-color.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { QtySelectorComponent } from './components/qty-selector/qty-selector/qty
     CarouselPComponent,
     LoadingComponent,
     QtySelectorComponent,
+    CreateProductColorComponent,
   ],
   imports: [
     CommonModule,
@@ -48,6 +50,7 @@ import { QtySelectorComponent } from './components/qty-selector/qty-selector/qty
     DynamicFilterComponent,
     CarouselPComponent,
     LoadingComponent,
+    CreateProductColorComponent,
   ],
 })
 export class SharedModule {}
