@@ -1,20 +1,12 @@
 <section class="product-section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6">
-        <div class="product-pic-zoom">
-          <img
-            class="product-big-img"
-            [src]="productDetail.prod_image"
-            [alt]="productDetail.prod_name"
-          />
-        </div>
-        <div
-          class="product-thumbs"
-          tabindex="1"
-          style="overflow: hidden; outline: none"
-        >
-          <!-- <div class="product-thumbs-track">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="product-pic-zoom">
+                    <img class="product-big-img" [src]="productDetail.prod_image" [alt]="productDetail.prod_name" />
+                </div>
+                <div class="product-thumbs" tabindex="1" style="overflow: hidden; outline: none">
+                    <!-- <div class="product-thumbs-track">
               <div
                 class="pt active"
                 data-imgbigurl="https://lh3.googleusercontent.com/proxy/PCtyF7UqlghRqiK_4dOuw047nQt5_bfzYaT24cICI_OzWip8zcs7q5A8dDwRo0nyc8bgcSOWH8UhTpjFdY-pLkmVd90xcYwgPDtG7rOWm77Z4n-sVa6LCOa3pOHIM09mb9ce4pL7ezlCEtey5RgwH_2ZtP9u60btcdfyIglTzvu-07kIC7Yk3xHQzmAJoHmkLChC9onDrAv5asNe9rf_ozsxcPeuBJIolTJwKrI3a5my"
@@ -43,28 +35,28 @@
                 />
               </div>
             </div> -->
-        </div>
-      </div>
-      <div class="col-lg-6 product-details">
-        <h2 class="p-title">{{ productDetail.prod_name }}</h2>
-        <h3 class="p-price">
-          <span *ngIf="productDetail.prod_discount" class="tachado">
+                </div>
+            </div>
+            <div class="col-lg-6 product-details">
+                <h2 class="p-title">{{ productDetail.prod_name }}</h2>
+                <h3 class="p-price">
+                    <span *ngIf="productDetail.prod_discount" class="tachado">
             {{ productDetail.prod_price | currency }} </span
           ><span class="ml-1">{{
             productDetail.prod_price_exit | currency
           }}</span>
-        </h3>
-        <h4 class="p-stock">
-          Disponibilidad: <span>{{ productDetail.prod_stock }}</span>
-        </h4>
-        <div class="p-rating">
-          <i class="fa fa-star-o"></i>
-          <i class="fa fa-star-o"></i>
-          <i class="fa fa-star-o"></i>
-          <i class="fa fa-star-o"></i>
-          <i class="fa fa-star-o fa-fade"></i>
-        </div>
-        <!-- <div class="fw-size-choose">
+                </h3>
+                <h4 class="p-stock">
+                    Disponibilidad: <span>{{ productDetail.prod_stock }}</span>
+                </h4>
+                <div class="p-rating">
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o fa-fade"></i>
+                </div>
+                <!-- <div class="fw-size-choose">
           <p>Tallas</p>
           <div class="sc-item">
             <input type="radio" name="sc" id="xs-size" />
@@ -91,7 +83,7 @@
             <label for="xxl-size">42</label>
           </div>
         </div> -->
-        <!-- <div class="quantity">
+                <!-- <div class="quantity">
           <div class="row">
             <div class="col-lg-7">
               <p>Cantidad</p>
@@ -119,8 +111,7 @@
             </div>
           </div>
         </div> -->
-        <a class="btn btn-sm site-btn" (click)="addCart(productDetail)"
-          >Comprar Ahora</a
+                <a class="btn btn-sm site-btn" (click)="addCart(productDetail)">Comprar Ahora</a
         >
         <div id="accordion" class="accordion-area">
           <div class="panel">
@@ -149,7 +140,7 @@
             </div>
           </div>
 
-          <div class="panel">
+          <!-- <div class="panel">
             <div class="panel-header" id="headingThree">
               <button
                 class="panel-link"
@@ -181,7 +172,7 @@
                 </p>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

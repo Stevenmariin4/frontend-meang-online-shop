@@ -144,7 +144,7 @@ export class HomeComponent implements OnInit {
         prod_description: element.prod_description,
         prod_price_exit: Math.round(element.prod_price_exit),
         prod_price: element.prod_price,
-        prod_image: this.urlupload + element.prod_image,
+        prod_image: element.prod_image,
         prod_discount: element.prod_discount,
         is_last_product: element.is_last_product,
       });

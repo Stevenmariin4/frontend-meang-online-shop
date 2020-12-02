@@ -36,7 +36,7 @@ export class CarouselPComponent implements OnInit {
           this.carrousel.push({
             pro_id: element.pro_id,
             pro_name: element.pro_name,
-            pro_image: this.urlBase + element.pro_image,  
+            pro_image: element.pro_image,
           });
         });
       });

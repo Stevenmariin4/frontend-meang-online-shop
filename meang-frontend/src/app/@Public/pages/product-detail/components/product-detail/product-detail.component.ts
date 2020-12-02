@@ -60,7 +60,7 @@ export class ProductDetailComponent implements OnInit {
             prod_price_exit: element.prod_price_exit,
             prod_stock: element.prod_stock,
             prod_qty: 0,
-            prod_image: this.urlupload + element.prod_image,
+            prod_image:  element.prod_image,
           };
         });
       },

@@ -9,6 +9,10 @@ import { IFile } from '@Service/interfaces/file.interface';
 import { basicAlert } from '@Shared/toast';
 import { Types_Alert } from '@Shared/values.config';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import {
+  AngularFireStorage,
+  AngularFireUploadTask,
+} from '@angular/fire/storage';
 
 @Component({
   selector: 'app-create-update-promotions',
@@ -27,11 +31,15 @@ export class CreateUpdatePromotionsComponent implements OnInit {
   IFile: IFile;
   DataFile: Array<Partial<IFile>>;
   idPromotion: number;
+  filePath: String;
+  basePath = '/images';
+  task: AngularFireUploadTask;
   constructor(
     private uploadServices: UploadService,
     private promotionService: PromotionsService,
     private router: Router,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private afStorage: AngularFireStorage
   ) {
     this.DataFile = [];
   }
@@ -134,17 +142,10 @@ export class CreateUpdatePromotionsComponent implements OnInit {
   }
 
   onFileChange(e) {
-    this.uploaderFiles = e.target.files;
-    // tslint:disable-next-line: prefer-for-of
-    for (let index = 0; index < this.uploaderFiles.length; index++) {
-      const nData = Object.assign({}, this.IFile);
-      nData.name = this.uploaderFiles[index].name;
-      nData.file = this.uploaderFiles[index];
-      this.DataFile.push(nData);
-    }
+    this.filePath = e.target.files[0];
   }
-  onUpload() {
-    if (this.DataFile.length === 0) {
+  async onUpload() {
+    if (!this.filePath) {
       basicAlert(
         'Subir Archivo',
         'No Se Ha Seleccionado un Archivo',
@@ -152,11 +153,20 @@ export class CreateUpdatePromotionsComponent implements OnInit {
         Types_Alert.WARNING
       );
     } else {
-      const formData = new FormData();
-      this.DataFile.forEach((element) => {
-        formData.append('image', element.file, element.name);
+      this.task = this.afStorage.upload(
+        '/images' + Math.random() + this.filePath,
+        this.filePath
+      );
+
+      (await this.task).ref.getDownloadURL().then((url) => {
+        basicAlert(
+          'Subir Archivo',
+          'Archivo Cargado Correctamente',
+          'Aceptar',
+          Types_Alert.SUCCESS
+        );
+        this.formPromotion.pro_image = url;
       });
-      this.onUploadFile(formData);
     }
   }
 

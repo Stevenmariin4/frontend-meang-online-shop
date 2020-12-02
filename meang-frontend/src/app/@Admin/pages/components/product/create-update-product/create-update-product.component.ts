@@ -21,6 +21,10 @@ import { IFile } from '@Service/interfaces/file.interface';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { PortalModule } from '@angular/cdk/portal';
 import { environment } from 'src/environments/environment';
+import {
+  AngularFireStorage,
+  AngularFireUploadTask,
+} from '@angular/fire/storage';
 export interface User {
   name: string;
 }
@@ -51,6 +55,8 @@ export class CreateUpdateProductComponent implements OnInit {
   IFile: IFile;
   DataFile: Array<Partial<IFile>>;
   idProduct: number;
+  filePath: string;
+  task: AngularFireUploadTask;
   uriUpload = environment.urlImages;
   constructor(
     private categoryService: CategoryService,
@@ -58,7 +64,8 @@ export class CreateUpdateProductComponent implements OnInit {
     private uploadService: UploadService,
     private activeRoute: ActivatedRoute,
     private serviceProduct: ProductsService,
-    private router: Router
+    private router: Router,
+    private afStorage: AngularFireStorage
   ) {
     this.arrayCategory = [];
     this.arraySubCategory = [];
@@ -105,7 +112,7 @@ export class CreateUpdateProductComponent implements OnInit {
         prod_price: element.prod_price,
         prod_discount_price: element.prod_discount_price,
         prod_discount: element.prod_discount,
-        prod_image: this.uriUpload + element.prod_image,
+        prod_image: element.prod_image,
         ca_id: element.ca_id,
         scan_id: element.scan_id,
       };
@@ -167,33 +174,6 @@ export class CreateUpdateProductComponent implements OnInit {
         console.log(err);
       }
     );
-  }
-
-  onFileChange(e) {
-    this.uploaderFiles = e.target.files;
-    // tslint:disable-next-line: prefer-for-of
-    for (let index = 0; index < this.uploaderFiles.length; index++) {
-      const nData = Object.assign({}, this.IFile);
-      nData.name = this.uploaderFiles[index].name;
-      nData.file = this.uploaderFiles[index];
-      this.DataFile.push(nData);
-    }
-  }
-  onUpload() {
-    if (this.DataFile.length === 0) {
-      basicAlert(
-        'Subir Archivo',
-        'No Se Ha Seleccionado un Archivo',
-        'Aceptar',
-        Types_Alert.WARNING
-      );
-    } else {
-      const formData = new FormData();
-      this.DataFile.forEach((element) => {
-        formData.append('image', element.file, element.name);
-      });
-      this.onUploadFile(formData);
-    }
   }
 
   onUploadFile(formdata: any) {
@@ -327,6 +307,34 @@ export class CreateUpdateProductComponent implements OnInit {
             }
           );
       }
+    }
+  }
+  onFileChange(e) {
+    this.filePath = e.target.files[0];
+  }
+  async onUpload() {
+    if (!this.filePath) {
+      basicAlert(
+        'Subir Archivo',
+        'No Se Ha Seleccionado un Archivo',
+        'Aceptar',
+        Types_Alert.WARNING
+      );
+    } else {
+      this.task = this.afStorage.upload(
+        '/images' + Math.random() + this.filePath,
+        this.filePath
+      );
+
+      (await this.task).ref.getDownloadURL().then((url) => {
+        basicAlert(
+          'Subir Archivo',
+          'Archivo Cargado Correctamente',
+          'Aceptar',
+          Types_Alert.SUCCESS
+        );
+        this.formProduct.prod_image = url;
+      });
     }
   }
 }
