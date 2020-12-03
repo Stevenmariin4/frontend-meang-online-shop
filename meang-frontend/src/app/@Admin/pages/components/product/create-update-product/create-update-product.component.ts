@@ -1,3 +1,9 @@
+import {
+  IColor,
+  IResponseDataColors,
+} from './../../../../../@core/interfaces/colors.interface';
+import { ColorService } from './../../../../../@core/services/colors/color.service';
+import { SizeService } from './../../../../../@core/services/sizes/size.service';
 import { async } from '@angular/core/testing';
 import { ColorProductService } from './../../../../../@core/services/color-product/color-product.service';
 import { SizeProductService } from './../../../../../@core/services/sizes-product/size-product.service';
@@ -7,7 +13,6 @@ import { UploadService } from './../../../../../@core/services/upload/upload.ser
 import { SubCategoryService } from './../../../../../@core/services/subCategory/sub-category.service';
 import { CategoryService } from './../../../../../@core/services/category/category.service';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import {
   ICategory,
   IResponseDataCategorys,
@@ -27,6 +32,18 @@ import {
   AngularFireUploadTask,
 } from '@angular/fire/storage';
 import { CreateProductColorComponent } from '@Shared/components/create-product-color/create-product-color.component';
+import { IResponseDataSize, ISize } from '@Service/interfaces/size.interface';
+import {
+  IProductBySize,
+  IProductSize,
+  IResponseDataProduct,
+  IResponseDataProductBySize,
+} from '@Service/interfaces/produc_size.interface';
+import {
+  IProductByColor,
+  IProductByColors,
+  IResponseDataProductByColors,
+} from '@Service/interfaces/product_color.interface';
 export interface User {
   name: string;
 }
@@ -53,8 +70,12 @@ export class CreateUpdateProductComponent implements OnInit {
     scan_id: null,
     is_valid: 1,
   };
+  ArrayproductSize: Partial<IProductSize> = { is_valid: 1 };
+  ArrayproductColor: Partial<IProductByColor> = { is_valid: 1 };
   arrayCategory: Partial<ICategory>[];
   arraySubCategory: Partial<ISubCategory>[];
+  ListColors: Partial<IColor>[];
+  ListSize: Partial<ISize>[];
   uploaderFiles: Array<File>;
   IFile: IFile;
   DataFile: Array<Partial<IFile>>;
@@ -72,16 +93,19 @@ export class CreateUpdateProductComponent implements OnInit {
     private afStorage: AngularFireStorage,
     private productSize: SizeProductService,
     private productColor: ColorProductService,
-    public dialog: MatDialog
+    private sizeservice: SizeService,
+    private colorservice: ColorService
   ) {
     this.arrayCategory = [];
     this.arraySubCategory = [];
     this.DataFile = [];
+    this.ListSize = [];
+    this.ListColors = [];
     this.tableProductColor = {
       table_filters: [],
       table_headers: [
         {
-          propertyName: 'size_name',
+          propertyName: 'col_name',
           nameToShow: 'Nombre',
           sort: 'asc',
           inputType: 'text',
@@ -98,7 +122,7 @@ export class CreateUpdateProductComponent implements OnInit {
       table_filters: [],
       table_headers: [
         {
-          propertyName: 'col_name',
+          propertyName: 'size_name',
           nameToShow: 'Nombre',
           sort: 'asc',
           inputType: 'text',
@@ -118,15 +142,22 @@ export class CreateUpdateProductComponent implements OnInit {
       if (res.id != null || res.id !== undefined) {
         this.idProduct = res.id;
         this.label = 'Actualizar Producto';
+        this.ArrayproductSize.prod_id = res.id;
+        this.ArrayproductColor.prod_id = res.id;
         await this.getProduct(res.id);
         await this.getProductSize(res.id);
+        await this.getProductColor(res.id);
       } else {
         this.label = 'Crear Producto';
       }
     });
     await this.getCategory();
     await this.getSubCategory();
+    await this.getsize();
+    await this.getcolor();
   }
+
+  // Obtener Todo el product
   getProduct(id) {
     const filter = {
       filter: {
@@ -139,9 +170,17 @@ export class CreateUpdateProductComponent implements OnInit {
       (data: IResponseData) => {
         this.poblateTableProduct(data);
       },
-      (err) => {}
+      (err) => {
+        basicAlert(
+          'Productos',
+          'Error Al Obtener Lista',
+          'Aceptar',
+          Types_Alert.ERROR
+        );
+      }
     );
   }
+  // Obtener las tallas asignadas a este producto
   getProductSize(id) {
     const filter = {
       filter: {
@@ -151,12 +190,29 @@ export class CreateUpdateProductComponent implements OnInit {
       limit: 10,
     };
     this.productSize.getFilter(filter).subscribe(
-      (data: any) => {},
+      (data: IResponseDataProductBySize) => {
+        if (data.error) {
+          basicAlert(
+            'Tallas',
+            'Error Al Obtener Lista',
+            'Aceptar',
+            Types_Alert.ERROR
+          );
+        } else {
+          this.poblateTableProductBySize(data);
+        }
+      },
       (err) => {
-        console.log(err);
+        basicAlert(
+          'Tallas',
+          'Error Al Obtener Lista',
+          'Aceptar',
+          Types_Alert.ERROR
+        );
       }
     );
   }
+  // Obtener los colores asignados a este producto
   getProductColor(id) {
     const filter = {
       filter: {
@@ -166,13 +222,85 @@ export class CreateUpdateProductComponent implements OnInit {
       limit: 10,
     };
     this.productColor.getFilter(filter).subscribe(
-      (data: any) => {},
+      (data: IResponseDataProductByColors) => {
+        if (data.error) {
+          basicAlert(
+            'Color',
+            'Error Al Obtener Lista',
+            'Aceptar',
+            Types_Alert.ERROR
+          );
+        } else {
+          this.poblateTableProductByColor(data);
+        }
+      },
       (err) => {
         console.log(err);
+        basicAlert(
+          'Color',
+          'Error Al Obtener Lista',
+          'Aceptar',
+          Types_Alert.ERROR
+        );
       }
     );
   }
+  // Obtener todas las tallas
+  getsize() {
+    const filter = {
+      filter: {
+        is_valid: 1,
+      },
+      limit: 10,
+    };
+    this.sizeservice.getFilter(filter).subscribe(
+      (data: IResponseDataSize) => {
+        if (data.error) {
+          basicAlert(
+            'Tallas',
+            'Error Al Obtener Lista',
+            'Aceptar',
+            Types_Alert.ERROR
+          );
+        } else {
+          this.poblateListSize(data);
+        }
+      },
+      (err) => {
+        basicAlert(
+          'Tallas',
+          'Error Al Obtener Lista',
+          'Aceptar',
+          Types_Alert.ERROR
+        );
+      }
+    );
+  }
+  // Obtener Colores
+  getcolor() {
+    const filter = {
+      filter: {
+        is_valid: 1,
+      },
+      limit: 10,
+    };
+    this.colorservice
+      .getColorFilter(filter)
+      .subscribe((data: IResponseDataColors) => {
+        if (data.error) {
+          basicAlert(
+            'Color',
+            'Error Al Obtener Lista',
+            'Aceptar',
+            Types_Alert.ERROR
+          );
+        } else {
+          this.poblateListColor(data);
+        }
+      });
+  }
 
+  // Poblar los datos del producto
   poblateTableProduct(data: IResponseData) {
     data.body.rows.forEach((element) => {
       this.formProduct = {
@@ -190,6 +318,54 @@ export class CreateUpdateProductComponent implements OnInit {
       };
     });
   }
+  // Poblar la tabla de tallas por producto
+  poblateTableProductBySize(data: IResponseDataProductBySize) {
+    this.tableProductSize.table_body = [];
+    data.body.rows.forEach((element: IProductBySize) => {
+      this.tableProductSize.table_body.push({
+        id: element.product_size_id,
+        size_name: element.relationship_product_size.size_name,
+        inputEditable: false,
+        actions: [{ show: true, action: 'delete', icon: 'fas fa-trash' }],
+      });
+      this.tableProductSize.totalData = data.body.count;
+    });
+  }
+  // Poblar la tabla de tallas por producto
+  poblateTableProductByColor(data: IResponseDataProductByColors) {
+    this.tableProductColor.table_body = [];
+    data.body.rows.forEach((element: IProductByColors) => {
+      this.tableProductColor.table_body.push({
+        id: element.pro_col_id,
+        col_name: element.relationship_product_color.col_name,
+        inputEditable: false,
+        actions: [{ show: true, action: 'delete', icon: 'fas fa-trash' }],
+      });
+      this.tableProductColor.totalData = data.body.count;
+    });
+  }
+  // Poblar la lista de tallas
+  poblateListSize(data: IResponseDataSize) {
+    data.body.rows.forEach((element: ISize) => {
+      this.ListSize.push({
+        size_id: element.size_id,
+        size_name: element.size_name,
+      });
+    });
+
+    console.log(this.ListSize);
+  }
+
+  // Poblar la lista de colores
+  poblateListColor(data: IResponseDataColors) {
+    data.body.rows.forEach((element: IColor) => {
+      this.ListColors.push({
+        col_id: element.col_id,
+        col_name: element.col_name,
+      });
+    });
+  }
+  // Obtener las Categorias
   getCategory() {
     const filter = {
       filter: {
@@ -218,7 +394,7 @@ export class CreateUpdateProductComponent implements OnInit {
       }
     );
   }
-
+  // Obtener las SubCategorias
   getSubCategory() {
     const filter = {
       filter: {
@@ -247,7 +423,7 @@ export class CreateUpdateProductComponent implements OnInit {
       }
     );
   }
-
+  // Subir la imagen de un producto
   onUploadFile(formdata: any) {
     this.uploadService.uploadFile(formdata).subscribe(
       (data) => {
@@ -270,21 +446,34 @@ export class CreateUpdateProductComponent implements OnInit {
       }
     );
   }
+
+  // Validar si el producto tiene descuento
   onOptionsSelected(data: any) {
     const values = data === 'True' ? true : false;
     this.formProduct.prod_discount_price = values;
   }
+  // Valida la categoria asignada a este producto
   onOptionsCategory(data: any) {
     this.formProduct.ca_id = data;
   }
+  // Valida la sub categoria asignada a este producto
   onOptionsSubCategory(data: any) {
     this.formProduct.scan_id = data;
   }
-
+  // Valida la Talla asignada a este producto
+  onOptionSize(data: any) {
+    this.ArrayproductSize.size_id = data;
+  }
+  // Valida el color asignara a este producto
+  onOptionsColor(data: any) {
+    this.ArrayproductColor.col_id = data;
+  }
+  // Obtiene el valor del descuento que va tener el producto
   getDiscount(data: number): number {
     const discount: number = (this.formProduct.prod_price * data) / 100;
     return discount;
   }
+  // Guarda un producto
   async save() {
     if (
       !this.formProduct.prod_name ||
@@ -381,9 +570,11 @@ export class CreateUpdateProductComponent implements OnInit {
       }
     }
   }
+  // El archivo de imagen lo asigna para subir al producto
   onFileChange(e) {
     this.filePath = e.target.files[0];
   }
+  // Carga el archivo a firebase
   async onUpload() {
     if (!this.filePath) {
       basicAlert(
@@ -409,19 +600,128 @@ export class CreateUpdateProductComponent implements OnInit {
       });
     }
   }
-  openDialogCreatecolor() {
-    const dialogRef = this.dialog.open(CreateProductColorComponent, {
-      data: {
-        action: 2,
-      },
-    });
-
-    dialogRef.afterClosed().subscribe(async (res) => {
-      if (res) {
-      }
-    });
+  // crear el color por producto
+  openCreatecolor() {
+    if (!this.ArrayproductColor.prod_id) {
+      basicAlert(
+        'Error',
+        'Debe Crear un producto antes de asignar una talla',
+        'Aceptar',
+        Types_Alert.WARNING
+      );
+    } else {
+      this.productColor
+        .create(this.ArrayproductColor)
+        .subscribe((data: IResponseDataProductByColors) => {
+          if (data.error) {
+            basicAlert(
+              'Color Producto',
+              'Error Al Crear',
+              'Aceptar',
+              Types_Alert.WARNING
+            );
+          } else {
+            basicAlert(
+              'Color Producto',
+              'Creado Correctamente',
+              'Aceptar',
+              Types_Alert.WARNING
+            );
+            this.getProductColor(this.idProduct);
+          }
+        });
+    }
   }
-  async actionHandler(action: any) {
+  // Crearo la talla por producto
+  openCreateProductSize() {
+    if (!this.ArrayproductSize.prod_id) {
+      basicAlert(
+        'Error',
+        'Debe Crear un producto antes de asignar una talla',
+        'Aceptar',
+        Types_Alert.WARNING
+      );
+    } else {
+      this.productSize.create(this.ArrayproductSize).subscribe(
+        (data: IResponseDataProduct) => {
+          if (data.error) {
+            basicAlert(
+              'Asiganar Talla Al Product',
+              'Error Al Obtener Crear',
+              'Aceptar',
+              Types_Alert.ERROR
+            );
+          } else {
+            basicAlert(
+              'Asiganar Talla Al Product',
+              'Creado Correctamente',
+              'Aceptar',
+              Types_Alert.SUCCESS
+            );
+
+            this.getProductSize(this.idProduct);
+          }
+        },
+        (err) => {
+          basicAlert(
+            'Asiganar Talla Al Product',
+            'Error Al Obtener Crear',
+            'Aceptar',
+            Types_Alert.ERROR
+          );
+        }
+      );
+    }
+  }
+  deleteProductSize(id) {
+    this.productSize.deleted(id).subscribe(
+      (data: IResponseDataProduct) => {
+        if (data.error) {
+          basicAlert(
+            'Producto Talla',
+            'Error Al Eliminar',
+            'Aceptar',
+            Types_Alert.ERROR
+          );
+        } else {
+          basicAlert(
+            'Producto Talla',
+            'Eliminado Correctamente',
+            'Aceptar',
+            Types_Alert.SUCCESS
+          );
+
+          this.getProductSize(this.idProduct);
+        }
+      },
+      (err) => {
+        basicAlert(
+          'Producto Talla',
+          'Error Al Eliminar',
+          'Aceptar',
+          Types_Alert.ERROR
+        );
+      }
+    );
+  }
+  // Acciones sobre las tablas
+  async actionHandler(action: any, table: any) {
+    switch (table) {
+      case 'size':
+        switch (action.action) {
+          case 'edit':
+            this.router.navigate([`/admin/product/update/${action.idItem}`]);
+            break;
+          case 'delete':
+            this.deleteProductSize(action.idItem);
+            break;
+          default:
+            break;
+        }
+        break;
+      case 'color':
+        break;
+    }
     switch (action.action) {
       case 'edit':
         this.router.navigate([`/admin/product/update/${action.idItem}`]);
@@ -433,6 +733,7 @@ export class CreateUpdateProductComponent implements OnInit {
         break;
     }
   }
+  // PAginador de tabblas
   pageChanger(page: any) {
     const filter = {
       filter: {
@@ -456,6 +757,7 @@ export class CreateUpdateProductComponent implements OnInit {
       }
     );
   }
+  // Filtros de tablas
   filterTable(toSearch: any) {
     const filter = {
       filter: {

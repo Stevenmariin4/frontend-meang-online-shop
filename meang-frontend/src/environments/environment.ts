@@ -16,6 +16,7 @@ export const environment = {
   colors: 'colors',
   uploads: 'uploads',
   filter: '/filter',
+  size: 'size',
   statusDefault: 1,
   idCliente: 2,
 };
