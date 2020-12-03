@@ -82,7 +82,7 @@ export class ProductDetailComponent implements OnInit {
             prod_qty: 0,
             col_id: 0,
             size_id: 0,
-            scan_id: element.scan_id,
+            sca_id: element.sca_id,
             prod_image: element.prod_image,
           };
         });

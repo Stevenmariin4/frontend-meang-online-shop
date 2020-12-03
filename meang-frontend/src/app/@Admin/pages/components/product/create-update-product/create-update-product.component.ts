@@ -67,7 +67,7 @@ export class CreateUpdateProductComponent implements OnInit {
     prod_image: '',
     is_last_product: null,
     ca_id: null,
-    scan_id: null,
+    sca_id: null,
     is_valid: 1,
   };
   ArrayproductSize: Partial<IProductSize> = { is_valid: 1 };
@@ -314,7 +314,7 @@ export class CreateUpdateProductComponent implements OnInit {
         prod_discount: element.prod_discount,
         prod_image: element.prod_image,
         ca_id: element.ca_id,
-        scan_id: element.scan_id,
+        sca_id: element.sca_id,
       };
     });
   }
@@ -458,7 +458,7 @@ export class CreateUpdateProductComponent implements OnInit {
   }
   // Valida la sub categoria asignada a este producto
   onOptionsSubCategory(data: any) {
-    this.formProduct.scan_id = data;
+    this.formProduct.sca_id = parseInt(data);
   }
   // Valida la Talla asignada a este producto
   onOptionSize(data: any) {
@@ -479,7 +479,7 @@ export class CreateUpdateProductComponent implements OnInit {
       !this.formProduct.prod_name ||
       !this.formProduct.prod_price ||
       !this.formProduct.ca_id ||
-      !this.formProduct.scan_id ||
+      !this.formProduct.sca_id ||
       !this.formProduct.prod_stock
     ) {
       basicAlert(

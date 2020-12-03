@@ -10,7 +10,7 @@ export interface Iproduct {
   prod_image: string;
   is_last_product: number | boolean;
   ca_id: number;
-  scan_id: number;
+  sca_id: number;
   is_valid: number;
 }
 export interface IproductShop {
@@ -23,7 +23,7 @@ export interface IproductShop {
   prod_discount: number;
   prod_price_exit: number;
   prod_image: string;
-  scan_id: number;
+  sca_id: number;
   col_id: number;
   size_id: number;
   prod_qty: number;
