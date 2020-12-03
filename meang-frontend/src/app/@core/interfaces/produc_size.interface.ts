@@ -17,6 +17,7 @@ export interface IProductBySize {
   product_size_id: number;
   is_valid: number;
   relationship_product_size: ISize;
+  size_name: string;
 }
 
 export interface IResponseDataProductBySize {

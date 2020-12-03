@@ -23,6 +23,9 @@ export interface IproductShop {
   prod_discount: number;
   prod_price_exit: number;
   prod_image: string;
+  scan_id: number;
+  col_id: number;
+  size_id: number;
   prod_qty: number;
 }
 

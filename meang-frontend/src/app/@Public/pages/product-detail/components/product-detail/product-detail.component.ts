@@ -10,6 +10,17 @@ import { ProductsService } from '@Service/services/product/products.service';
 import { basicAlert } from '@Shared/toast';
 import { Types_Alert } from '@Shared/values.config';
 import { CartService } from '@shop/core/service/cart/cart.service';
+import {
+  IProductByColors,
+  IResponseDataProductByColors,
+} from '@Service/interfaces/product_color.interface';
+import {
+  IProductBySize,
+  IResponseDataProductBySize,
+} from '@Service/interfaces/produc_size.interface';
+import { SizeProductService } from '@Service/services/sizes-product/size-product.service';
+import { ColorProductService } from '@Service/services/color-product/color-product.service';
+import { IColor } from '@Service/interfaces/colors.interface';
 
 @Component({
   selector: 'app-product-detail',
@@ -20,12 +31,19 @@ export class ProductDetailComponent implements OnInit {
   productDetail: IproductShop;
   idProduct: number;
   urlupload = environment.urlImages;
+  listSize: Partial<IProductBySize>[];
+  listColor: Partial<IColor>[];
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
     private productService: ProductsService,
-    private carservice: CartService
-  ) {}
+    private carservice: CartService,
+    private productSize: SizeProductService,
+    private productColor: ColorProductService
+  ) {
+    this.listSize = [];
+    this.listColor = [];
+  }
 
   ngOnInit(): void {
     this.activeRoute.params.subscribe(async (res: Params) => {
@@ -33,6 +51,8 @@ export class ProductDetailComponent implements OnInit {
         console.log('Este es el id', res.id);
         this.idProduct = res.id;
         this.getProduct();
+        this.getProductColor(res.id);
+        this.getProductSize(res.id);
       } else {
         this.router.navigate(['/home']);
       }
@@ -60,7 +80,10 @@ export class ProductDetailComponent implements OnInit {
             prod_price_exit: element.prod_price_exit,
             prod_stock: element.prod_stock,
             prod_qty: 0,
-            prod_image:  element.prod_image,
+            col_id: 0,
+            size_id: 0,
+            scan_id: element.scan_id,
+            prod_image: element.prod_image,
           };
         });
       },
@@ -75,6 +98,89 @@ export class ProductDetailComponent implements OnInit {
       }
     );
   }
+  // Obtener las tallas asignadas a este producto
+  getProductSize(id) {
+    const filter = {
+      filter: {
+        prod_id: id,
+        is_valid: 1,
+      },
+      limit: 10,
+    };
+    this.productSize.getFilter(filter).subscribe(
+      (data: IResponseDataProductBySize) => {
+        if (data.error) {
+          basicAlert(
+            'Tallas',
+            'Error Al Obtener Lista',
+            'Aceptar',
+            Types_Alert.ERROR
+          );
+        } else {
+          this.poblateTableProductBySize(data);
+        }
+      },
+      (err) => {
+        basicAlert(
+          'Tallas',
+          'Error Al Obtener Lista',
+          'Aceptar',
+          Types_Alert.ERROR
+        );
+      }
+    );
+  }
+  // Obtener los colores asignados a este producto
+  getProductColor(id) {
+    const filter = {
+      filter: {
+        prod_id: id,
+        is_valid: 1,
+      },
+      limit: 10,
+    };
+    this.productColor.getFilter(filter).subscribe(
+      (data: IResponseDataProductByColors) => {
+        if (data.error) {
+          basicAlert(
+            'Color',
+            'Error Al Obtener Lista',
+            'Aceptar',
+            Types_Alert.ERROR
+          );
+        } else {
+          this.poblateTableProductByColor(data);
+        }
+      },
+      (err) => {
+        console.log(err);
+        basicAlert(
+          'Color',
+          'Error Al Obtener Lista',
+          'Aceptar',
+          Types_Alert.ERROR
+        );
+      }
+    );
+  }
+  // Poblar la tabla de tallas por producto
+  poblateTableProductBySize(data: IResponseDataProductBySize) {
+    data.body.rows.forEach((element: IProductBySize) => {
+      this.listSize.push({
+        product_size_id: element.relationship_product_size.size_id,
+        size_name: element.relationship_product_size.size_name,
+      });
+    });
+  }
+  // Poblar la tabla de tallas por producto
+  poblateTableProductByColor(data: IResponseDataProductByColors) {
+    data.body.rows.forEach((element: IProductByColors) => {
+      this.listColor.push({
+        col_id: element.relationship_product_color.col_id,
+        col_name: element.relationship_product_color.col_name,
+      });
+    });
+  }
   plus(product: IproductShop) {
     product.prod_qty += 1;
     this.carservice.manageProduct(product);
@@ -88,5 +194,12 @@ export class ProductDetailComponent implements OnInit {
       data.prod_qty = 1;
     }
     this.carservice.manageProduct(data);
+  }
+
+  onOptionSize(data: any) {
+    this.productDetail.size_id = data;
+  }
+  onOptionsColor(data: any) {
+    this.productDetail.col_id = data;
   }
 }
